@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import ToggleButton from "../common/toggle-button/ToggleButton";
 import { StyledSettings } from "./settings.styles";
