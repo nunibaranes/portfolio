@@ -33,7 +33,7 @@ const initialBoardData: IBoardData = {
   gameIsRunning: false,
 };
 
-export default function GameOfLife(props: {}) {
+export default function GameOfLife() {
   initialBoardData.puzzle = generateBoard(initialBoardData);
   const [boardData, setBoardData] = useState(initialBoardData);
 
@@ -126,7 +126,6 @@ export default function GameOfLife(props: {}) {
         })}
         onControllerClicked={onControllerClicked}
         disableNextGeneration={disableNextGeneration}
-        {...props}
       />
     ),
     [

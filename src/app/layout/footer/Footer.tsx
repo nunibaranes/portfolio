@@ -50,7 +50,7 @@ export default function Footer() {
           </StyledSVGIcon>
           <span>{name}</span>
         </StyledLink>
-        <StyledLink className="email" href={`mailto:${email}`} target="_blank">
+        <StyledLink className="email" href={`mailto:${email.toLowerCase()}`}>
           <StyledSVGIcon
             aria-hidden="true"
             data-prefix="fas"

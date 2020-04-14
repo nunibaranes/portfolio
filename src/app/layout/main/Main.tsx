@@ -7,6 +7,7 @@ import Settings from "./settings/Settings";
 
 /** Styles */
 import { StyledMainContainer } from "../../styles/common/layout.styles";
+import AppRouter from "../../routers/AppRouter";
 
 export default function Main() {
   const [isDarkModeState, setIsDarkModeState] = useState(false);
@@ -26,13 +27,13 @@ export default function Main() {
       id="main"
       isDarkMode={isDarkModeState}
     >
-      <Settings
-        darkModeTogglelabel={darkModeTogglelabel}
-        toggleDarkModeClicked={toggleDarkMode}
-      />
-      <GameOfLife />
-      <Sudoku />
-      <Paint />
+      {
+        <Settings
+          darkModeTogglelabel={darkModeTogglelabel}
+          toggleDarkModeClicked={toggleDarkMode}
+        />
+      }
+      <AppRouter />
     </StyledMainContainer>
   );
 }
