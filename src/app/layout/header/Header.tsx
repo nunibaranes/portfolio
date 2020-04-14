@@ -1,10 +1,10 @@
 import React from "react";
-import noonles from "../../assets/images/nofarNoonles.jpg";
-import headerBg from "../../assets/images/header-bg.jpg";
+import noonles from "../../../assets/images/nofarNoonles.jpg";
+import headerBg from "../../../assets/images/header-bg.jpg";
 
 /** Styles */
-import { StyledHeader } from "../styles/common/layout.styles";
-import { StyledLink } from "../styles/common/common.styles";
+import { StyledHeader } from "../../styles/common/layout.styles";
+import { StyledLink } from "../../styles/common/common.styles";
 
 export default function Header() {
   return (
