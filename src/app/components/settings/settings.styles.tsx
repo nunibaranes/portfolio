@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { StyledButton } from "../../styles/common/common.styles";
 import { getStyledButton } from "../../styles/common/layout.styles";
+import { ITheme } from "../../App";
 
 export const StyledSettings = styled("div")`
   width: auto;
@@ -21,4 +22,9 @@ export const StyledSettings = styled("div")`
     max-width: fit-content;
     margin-right: 0;
   }
+
+  ${(props: { theme?: ITheme }) => {
+    const { theme } = props;
+    return `${getStyledButton({ isDarkMode: theme.isDarkMode })}`;
+  }}
 `;
