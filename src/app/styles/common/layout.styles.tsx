@@ -6,6 +6,27 @@ import {
   StyledButton,
 } from "./common.styles";
 
+export const getStyledButton = ({
+  isDarkMode,
+  lightColor = "white",
+  darkColor = "black",
+}: {
+  isDarkMode: boolean;
+  lightColor?: string;
+  darkColor?: string;
+}) => {
+  return `
+  ${StyledButton} {
+    border: 1px solid ${isDarkMode ? lightColor : darkColor};
+    color: ${isDarkMode ? lightColor : darkColor};
+
+    &:hover{
+        color: ${isDarkMode ? darkColor : lightColor};
+        background-color: ${isDarkMode ? lightColor : darkColor};
+    }
+  }
+`;
+};
 export const StyledApp = styled("div")`
   text-align: center;
 
@@ -15,16 +36,47 @@ export const StyledApp = styled("div")`
 `;
 
 export const StyledHeader = styled("header")`
-  background-color: #282c34;
-  background-image: ${(props: { background: string }) =>
-    `url(${props.background})` || "none"};
-  min-height: 100vh;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 50px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 0 20px;
+
+  ${(props: { isDarkMode?: boolean }) => {
+    const { isDarkMode } = props;
+    return `
+      .logo {
+        margin-bottom: 10px;
+        margin-block-start: 0;
+        color: ${isDarkMode ? "white" : "black"};
+      }
+    `;
+  }}
+`;
+
+export const StyledMainContainer = styled("section")`
+  position: relative;
+  min-height: 100vh;
+  padding: 50px 0;
+  && {
+    ${(props: { isDarkMode?: boolean }) => {
+      const { isDarkMode } = props;
+      return `
+        background-color: ${isDarkMode ? "black" : "white"};
+        color: ${isDarkMode ? "white" : "black"};
+
+        ${getStyledButton({ isDarkMode })}
+    `;
+    }}
+  }
 
   .noonles {
     width: 200px;
@@ -34,39 +86,20 @@ export const StyledHeader = styled("header")`
   }
 `;
 
-export const StyledMainContainer = styled("section")`
-  && {
-    ${(props: { isDarkMode: boolean }) => {
-      const { isDarkMode } = props;
-      return `
-        min-height: 50vh;
-        padding: 50px 0;
-        background-color: ${isDarkMode ? "black" : "white"};
-        color: ${isDarkMode ? "white" : "black"};
-
-        ${StyledButton} {
-          border: 1px solid ${isDarkMode ? "#fff" : "#000"};
-          color: ${isDarkMode ? "white" : "black"};
-
-          &:hover{
-              color: ${isDarkMode ? "#000" : "#fff"};
-              background-color: ${isDarkMode ? "#fff" : "#000"};
-          }
-        }
-    `;
-    }}
-  }
-`;
-
 export const StyledFooter = styled("footer")`
-  min-height: 100px;
+  position: fixed;
+  z-index: 2;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-height: 50px;
   background-color: #282c34;
   color: #fff;
-  padding: 20px;
   display: flex;
 
   ${StyledWrapper} {
     flex-direction: row;
+    margin: 0 auto;
   }
 
   ${StyledLink} {
