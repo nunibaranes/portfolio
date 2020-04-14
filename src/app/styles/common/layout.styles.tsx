@@ -15,32 +15,30 @@ export const StyledApp = styled("div")`
 `;
 
 export const StyledHeader = styled("header")`
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
   background-color: #282c34;
-  background-image: ${(props: { background: string }) =>
-    `url(${props.background})` || "none"};
-  min-height: 100vh;
+  min-height: 50px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   color: white;
-
-  .noonles {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-    border-radius: 50%;
-  }
+  padding: 0 20px;
 `;
 
 export const StyledMainContainer = styled("section")`
+  position: relative;
+  min-height: 100vh;
+  padding: 50px 0;
   && {
-    ${(props: { isDarkMode: boolean }) => {
+    ${(props: { isDarkMode?: boolean }) => {
       const { isDarkMode } = props;
       return `
-        min-height: 50vh;
-        padding: 50px 0;
         background-color: ${isDarkMode ? "black" : "white"};
         color: ${isDarkMode ? "white" : "black"};
 
@@ -56,17 +54,29 @@ export const StyledMainContainer = styled("section")`
     `;
     }}
   }
+
+  .noonles {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border-radius: 50%;
+  }
 `;
 
 export const StyledFooter = styled("footer")`
-  min-height: 100px;
+  position: fixed;
+  z-index: 2;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-height: 50px;
   background-color: #282c34;
   color: #fff;
-  padding: 20px;
   display: flex;
 
   ${StyledWrapper} {
     flex-direction: row;
+    margin: 0 auto;
   }
 
   ${StyledLink} {

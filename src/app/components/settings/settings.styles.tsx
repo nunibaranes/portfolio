@@ -1,20 +1,15 @@
 import styled from "styled-components";
-import { StyledButton } from "../../../styles/common/common.styles";
+import { StyledButton } from "../../styles/common/common.styles";
 
 export const StyledSettings = styled("div")`
-  width: 100%;
+  width: auto;
   max-width: 200px;
   height: auto;
-  background-color: #909090;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  position: sticky;
-  right: 10px;
-  top: 10px;
+  justify-content: center;
   padding: 10px;
-  margin-top: -80px;
-  transform: translateY(78px);
+  margin-left: auto;
 
   .title {
     margin-bottom: 10px;
@@ -24,5 +19,7 @@ export const StyledSettings = styled("div")`
   ${StyledButton} {
     max-width: fit-content;
     margin-right: 0;
+    border: #fff 1px solid;
+    color: #fff;
   }
 `;
