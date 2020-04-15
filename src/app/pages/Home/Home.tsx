@@ -1,7 +1,5 @@
 import React from "react";
 import noonles from "../../../assets/images/nofarNoonles.jpg";
-import headerBg from "../../../assets/images/header-bg.jpg";
-import { StyledLink } from "../../styles/common/common.styles";
 
 export default function Home() {
   return (

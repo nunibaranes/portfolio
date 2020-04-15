@@ -1,54 +1,13 @@
-import React, { ReactElement } from "react";
-import { RouteComponentProps, Link } from "react-router-dom";
-
-import GameOfLife from "../../components/game-of-life/GameOfLife";
-import Sudoku from "../../components/sudoku/Sudoku";
-import Paint from "../../components/paint/Paint";
-import { TParams } from "../../routers/AppRouter";
-interface IGame {
-  id: string;
-  component: ReactElement;
-}
-
-const games: IGame[] = [
-  {
-    id: "game-of-life",
-    component: <GameOfLife />,
-  },
-  {
-    id: "sudoku",
-    component: <Sudoku />,
-  },
-  {
-    id: "paint",
-    component: <Paint />,
-  },
-];
+import React from "react";
+import { routes } from "../../routers/routes";
+import { IRoute, RouteMenu } from "../../routers/AppRouter";
 
 export default function Games() {
+  const games: IRoute = routes.find(({ id }) => id === "games");
   return (
     <div>
-      <h2>Games</h2>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/games/game-of-life">Game of Life</Link>
-          </li>
-          <li>
-            <Link to="/games/sudoku">Sudoku</Link>
-          </li>
-          <li>
-            <Link to="/games/paint">Paint</Link>
-          </li>
-        </ul>
-      </nav>
+      <h2>{games.title}</h2>
+      <RouteMenu routes={games.routes} />
     </div>
   );
-}
-
-export function Game({ match }: RouteComponentProps<TParams>) {
-  const { id } = match.params;
-  const game = games.find((game) => game.id === id);
-
-  return game.component;
 }
