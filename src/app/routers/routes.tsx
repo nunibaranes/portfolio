@@ -1,11 +1,18 @@
 import React from "react";
 import Home from "../pages/Home/Home";
-import Portfolio from "../pages/Portfolio/Portfolio";
 import Games from "../pages/Games/Games";
 import GameOfLife from "../components/game-of-life/GameOfLife";
 import Sudoku from "../components/sudoku/Sudoku";
 import Paint from "../components/paint/Paint";
 import { IRoute, RenderSubRoute } from "./AppRouter";
+import GuessWhoIAm from "../pages/GuessWhoIAm/GuessWhoIAm";
+
+export const HOME = "home";
+export const GUESS_WHO_I_AM = "guess-who-i-am";
+export const GAMES = "games";
+export const GAME_OF_LIFE = "game-of-life";
+export const SUDOKU = "sudoku";
+export const PAINT = "paint";
 
 export const routes: IRoute[] = [
   {
@@ -15,67 +22,36 @@ export const routes: IRoute[] = [
     component: Home,
   },
   {
-    title: "Portfolio",
-    id: "portfolio",
-    path: "/portfolio",
-    exact: true,
-    component: Portfolio,
-    routes: [
-      {
-        title: "About",
-        id: "about",
-        path: "portfolio/about",
-        component: () => <h2>About</h2>,
-      },
-      {
-        title: "Professional",
-        id: "professional",
-        path: "portfolio/professional",
-        component: () => <h2>Professional</h2>,
-      },
-      {
-        title: "Hobbies",
-        id: "hobbies",
-        path: "portfolio/hobbies",
-        component: () => <h2>Hobbies</h2>,
-      },
-    ],
+    title: "Guess who I am",
+    id: "guess-who-i-am",
+    path: "/guess-who-i-am",
+    component: GuessWhoIAm,
   },
   {
-    id: "portfolio-index",
-    path: "/portfolio/:id",
-    component: RenderSubRoute,
-  },
-  {
-    title: "Games",
     id: "games",
+    title: "Games",
     path: "/games",
-    exact: true,
     component: Games,
-    routes: [
-      {
-        id: "game-of-life",
-        path: "/games/game-of-life",
-        title: "Game Of Life",
-        component: GameOfLife,
-      },
-      {
-        path: "/games/sudoku",
-        id: "sudoku",
-        title: "Sudoku",
-        component: Sudoku,
-      },
-      {
-        path: "/games/paint",
-        id: "paint",
-        title: "Paint",
-        component: Paint,
-      },
-    ],
   },
   {
-    id: "games-index",
-    path: "/games/:id",
-    component: RenderSubRoute,
+    id: GAME_OF_LIFE,
+    parentId: GAMES,
+    title: "Game Of Life",
+    path: "/games/game-of-life",
+    component: GameOfLife,
+  },
+  {
+    id: SUDOKU,
+    parentId: GAMES,
+    title: "Sudoku",
+    path: "/games/sudoku",
+    component: Sudoku,
+  },
+  {
+    id: PAINT,
+    parentId: GAMES,
+    title: "Paint",
+    path: "/games/paint",
+    component: Paint,
   },
 ];
