@@ -5,7 +5,7 @@ import Header from "./layout/header/Header";
 import Main from "./layout/main/Main";
 import Footer from "./layout/footer/Footer";
 
-import { StyledApp } from "./styles/common/layout.styles";
+import { StyledApp } from "./styles/common/app.styles";
 export interface ITheme {
   isDarkMode: boolean;
   toggleLabel: string;

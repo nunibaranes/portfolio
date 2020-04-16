@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Alignment } from "../../interfaces/common/ui";
 
-interface IStyledWrapper {
+export interface IStyledWrapper {
   noPadding?: boolean;
   withBorder?: boolean;
   withCustomBorder?: string;
@@ -13,6 +13,7 @@ interface IStyledWrapper {
   flexDirection?: string;
   margin?: string;
 }
+
 export const StyledWrapper = styled("section")`
   ${(props: IStyledWrapper) => {
     const {
@@ -72,6 +73,7 @@ export const StyledButton = styled("button")`
   height: min-content;
   cursor: pointer;
   transition: all 0.3s ease;
+  max-width: fit-content;
 
   &:focus {
     outline: none;
@@ -96,12 +98,12 @@ export const StyledButton = styled("button")`
 
 export const StyledSVGIcon = styled("svg")`
   ${(props: { width?: string; height?: string; margin?: string }) => {
-    const { width, height, margin } = props;
+    const { width = "30px", height = "30px", margin = "0 auto" } = props;
 
     return `
-      width: ${width || "30px"};
-      height: ${height || "30px"};
-      margin: ${margin || "0 auto"};
+      width: ${width};
+      height: ${height};
+      margin: ${margin};
     `;
   }}
 `;

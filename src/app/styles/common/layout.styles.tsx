@@ -27,13 +27,6 @@ export const getStyledButton = ({
   }
 `;
 };
-export const StyledApp = styled("div")`
-  text-align: center;
-
-  * {
-    box-sizing: border-box;
-  }
-`;
 
 export const StyledHeader = styled("header")`
   position: fixed;

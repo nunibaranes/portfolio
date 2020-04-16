@@ -4,11 +4,12 @@ import {
   RouteComponentProps,
   Link,
   useLocation,
-  Redirect,
-  Switch,
 } from "react-router-dom";
+
 import { routes } from "./routes";
-import { parseRelativeRoutes } from "./routeUtils";
+
+import { StyledNav } from "../styles/ui/ui.styles";
+import { StyledWrapper, IStyledWrapper } from "../styles/common/common.styles";
 
 export type TParams = { id?: string; subId?: string };
 export type SRoutes = { routes?: IRoute[] };
@@ -23,11 +24,17 @@ export interface IRoute {
   parentId?: string;
 }
 
-export function RouteMenu(props: { routes: IRoute[] }) {
-  const { routes } = props;
+export function RouteMenu(props: {
+  routes: IRoute[];
+  wrapperStyles?: IStyledWrapper;
+}) {
+  const defaultStyles = {
+    alignItems: "center",
+  };
+  const { routes, wrapperStyles = defaultStyles } = props;
   return (
-    <nav>
-      <ul>
+    <StyledWrapper {...wrapperStyles}>
+      <StyledNav>
         {routes.map(({ title, path, id }) => {
           return (
             <li key={id}>
@@ -35,8 +42,8 @@ export function RouteMenu(props: { routes: IRoute[] }) {
             </li>
           );
         })}
-      </ul>
-    </nav>
+      </StyledNav>
+    </StyledWrapper>
   );
 }
 
