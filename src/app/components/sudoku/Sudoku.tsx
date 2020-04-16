@@ -4,7 +4,6 @@ import Title from "../common/title/Title";
 import Board from "../common/board/Board";
 import Popup from "../common/popup/Popup";
 
-import withAnimatedWrapper from "../../hoc/withAnimationWrapper";
 import { generateBoard, cloneBoard } from "../common/board/boardUtils";
 
 import { ICell } from "../common/board/cell/Cell.interface";
@@ -29,131 +28,128 @@ const initialBoardData: IBoardData = {
   boardType: BoardType.Sudoku,
 };
 
-export default withAnimatedWrapper({
-  Component: function Sudoku() {
-    initialBoardData.puzzle = generateBoard(initialBoardData);
-    const title: string = "Sudoku Game";
-    const [cellOptions, setCellOptions] = useState([]);
-    const [boardData, setBoardData] = useState(initialBoardData);
-    const [popupIsOpen, togglePopup] = useState(false);
-    const [boardStatus, setBoardStatus] = useState(initialBoardData.puzzle);
-    const [selectedCell, setSelectedCell] = useState(null);
+export default function Sudoku() {
+  initialBoardData.puzzle = generateBoard(initialBoardData);
+  const title: string = "Sudoku Game";
+  const [cellOptions, setCellOptions] = useState([]);
+  const [boardData, setBoardData] = useState(initialBoardData);
+  const [popupIsOpen, togglePopup] = useState(false);
+  const [boardStatus, setBoardStatus] = useState(initialBoardData.puzzle);
+  const [selectedCell, setSelectedCell] = useState(null);
 
-    /**
-     * getCellOptions
-     */
-    const getCellOptions = (start: number, total: number): number[] => {
-      const optionsTemplate = Array.from(Array(total).keys());
-      const options = Array.from(optionsTemplate, (option, index) => {
-        return index + start;
+  /**
+   * getCellOptions
+   */
+  const getCellOptions = (start: number, total: number): number[] => {
+    const optionsTemplate = Array.from(Array(total).keys());
+    const options = Array.from(optionsTemplate, (option, index) => {
+      return index + start;
+    });
+    return options;
+  };
+
+  useEffect(() => {
+    setCellOptions(getCellOptions(1, 9));
+  }, []);
+
+  /**
+   * cellClicked
+   * set cellObj as selectedCell and toggleOpenPopupState
+   */
+  const cellClicked = (cellObj: ICell): void => {
+    setSelectedCell(cellObj);
+    toggleOpenPopupState();
+  };
+
+  /**
+   * setBoardHighlightCells
+   * set state boardStatus with highlighted cells
+   */
+  const setBoardHighlightCells = (cellObj: ICell): void => {
+    const { highlightOptions } = boardData;
+    const shouldHighlightCell = highlightOptions.includes("cell");
+    const shouldHighlightCRow = highlightOptions.includes("row");
+    const shouldHighlightColumn = highlightOptions.includes("column");
+
+    const clonedBoardStatus = boardStatus.map((row: ICell[]): ICell[] => {
+      return row.map((cell) => {
+        const highlightCell = shouldHighlightCell && cellObj.id === cell.id;
+        const highlightRow = shouldHighlightCRow && cell.x === cellObj.x;
+        const highlightColumn = shouldHighlightColumn && cell.y === cellObj.y;
+
+        if (highlightCell || highlightRow || highlightColumn) {
+          return { ...cell, isHighlight: true };
+        }
+        return { ...cell, isHighlight: false };
       });
-      return options;
-    };
+    });
+    setBoardStatus(clonedBoardStatus);
+  };
 
-    useEffect(() => {
-      setCellOptions(getCellOptions(1, 9));
-    }, []);
+  /**
+   * toggleOpenPopupState
+   * set state openPopup: boolean
+   */
+  const toggleOpenPopupState = (): void => {
+    togglePopup(!popupIsOpen);
+  };
 
-    /**
-     * cellClicked
-     * set cellObj as selectedCell and toggleOpenPopupState
-     */
-    const cellClicked = (cellObj: ICell): void => {
-      setSelectedCell(cellObj);
-      toggleOpenPopupState();
-    };
+  /**
+   * setCellValue
+   * set board status with the new cell value
+   */
+  const setCellValue = (value: number | string): void => {
+    const cellWithValue = { ...selectedCell, value: value };
+    const clonedBoardStatus = cloneBoard(boardStatus);
+    clonedBoardStatus[cellWithValue.x][cellWithValue.y].value = value;
+    setBoardStatus(clonedBoardStatus);
+    toggleOpenPopupState();
+  };
 
-    /**
-     * setBoardHighlightCells
-     * set state boardStatus with highlighted cells
-     */
-    const setBoardHighlightCells = (cellObj: ICell): void => {
-      const { highlightOptions } = boardData;
-      const shouldHighlightCell = highlightOptions.includes("cell");
-      const shouldHighlightCRow = highlightOptions.includes("row");
-      const shouldHighlightColumn = highlightOptions.includes("column");
-
-      const clonedBoardStatus = boardStatus.map((row: ICell[]): ICell[] => {
-        return row.map((cell) => {
-          const highlightCell = shouldHighlightCell && cellObj.id === cell.id;
-          const highlightRow = shouldHighlightCRow && cell.x === cellObj.x;
-          const highlightColumn = shouldHighlightColumn && cell.y === cellObj.y;
-
-          if (highlightCell || highlightRow || highlightColumn) {
-            return { ...cell, isHighlight: true };
-          }
-          return { ...cell, isHighlight: false };
-        });
-      });
-      setBoardStatus(clonedBoardStatus);
-    };
-
-    /**
-     * toggleOpenPopupState
-     * set state openPopup: boolean
-     */
-    const toggleOpenPopupState = (): void => {
-      togglePopup(!popupIsOpen);
-    };
-
-    /**
-     * setCellValue
-     * set board status with the new cell value
-     */
-    const setCellValue = (value: number | string): void => {
-      const cellWithValue = { ...selectedCell, value: value };
-      const clonedBoardStatus = cloneBoard(boardStatus);
-      clonedBoardStatus[cellWithValue.x][cellWithValue.y].value = value;
-      setBoardStatus(clonedBoardStatus);
-      toggleOpenPopupState();
-    };
-
-    return (
-      <StyledWrapper className="sudoku" withBorder>
-        <Title title={title} alignment={Alignment.Center} isMainTitle />
-        <Board
-          boardData={boardData}
-          additionalClass="sudoku"
-          board={boardStatus}
-          cellClicked={cellClicked}
-          cellHovered={setBoardHighlightCells}
-        />
-        {popupIsOpen && (
-          <Popup
-            onClosePopup={() => {
-              toggleOpenPopupState();
-            }}
-            isInnerPopup
-          >
-            <StyledSudokuFillOptions className="cell-fill-options">
-              {cellOptions.map((option: number) => {
-                return (
-                  <StyledSudokuFillSingleOption
-                    key={option}
-                    className="cell-fill-option"
-                    onClick={() => {
-                      setCellValue(option);
-                    }}
-                  >
-                    {option}
-                  </StyledSudokuFillSingleOption>
-                );
-              })}
-              {
+  return (
+    <StyledWrapper className="sudoku" withBorder>
+      <Title title={title} alignment={Alignment.Center} isMainTitle />
+      <Board
+        boardData={boardData}
+        additionalClass="sudoku"
+        board={boardStatus}
+        cellClicked={cellClicked}
+        cellHovered={setBoardHighlightCells}
+      />
+      {popupIsOpen && (
+        <Popup
+          onClosePopup={() => {
+            toggleOpenPopupState();
+          }}
+          isInnerPopup
+        >
+          <StyledSudokuFillOptions className="cell-fill-options">
+            {cellOptions.map((option: number) => {
+              return (
                 <StyledSudokuFillSingleOption
-                  className="cell-clean-option"
+                  key={option}
+                  className="cell-fill-option"
                   onClick={() => {
-                    setCellValue("");
+                    setCellValue(option);
                   }}
                 >
-                  Clean
+                  {option}
                 </StyledSudokuFillSingleOption>
-              }
-            </StyledSudokuFillOptions>
-          </Popup>
-        )}
-      </StyledWrapper>
-    );
-  },
-  data: { className: "sudoku-section" },
-});
+              );
+            })}
+            {
+              <StyledSudokuFillSingleOption
+                className="cell-clean-option"
+                onClick={() => {
+                  setCellValue("");
+                }}
+              >
+                Clean
+              </StyledSudokuFillSingleOption>
+            }
+          </StyledSudokuFillOptions>
+        </Popup>
+      )}
+    </StyledWrapper>
+  );
+}
