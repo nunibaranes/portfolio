@@ -1,12 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import noonles from "../../../assets/images/nofarNoonles.jpg";
 import { StyledWrapper, StyledButton } from "../../styles/common/common.styles";
 import "../../styles/animations.scss";
+import { RESUME, HOME } from "../../routers/routes";
+import { IRouteComponentProps } from "../../routers/AppRouter";
+import { IRefObject } from "../../interfaces/common/ui";
 import withAnimatedWrapper from "../../hoc/withAnimationWrapper";
 
 export default withAnimatedWrapper({
-  Component: function Home() {
+  Component: function Home(
+    props: IRouteComponentProps<{
+      outerRef: IRefObject<HTMLDivElement>;
+    }>
+  ) {
     return (
       <StyledWrapper className="content" alignItems="center">
         <img src={noonles} className="noonles" alt="Nofar Baranes" />
@@ -20,11 +27,11 @@ export default withAnimatedWrapper({
             piece of information about me
           </p>
         </article>
-
         <Link to="/resume">
-          <StyledButton>Start</StyledButton>
+          <StyledButton type="button">Start</StyledButton>
         </Link>
       </StyledWrapper>
     );
   },
+  data: { className: "home-section" },
 });

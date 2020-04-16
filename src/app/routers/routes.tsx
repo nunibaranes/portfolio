@@ -7,21 +7,27 @@ import Paint from "../components/paint/Paint";
 import { IRoute } from "./AppRouter";
 import Resume from "../pages/Resume/Resume";
 
-export const HOME = { id: "home", path: "/", exact: true, component: Home };
-export const RESUME = {
+export const HOME: IRoute = {
+  id: "home",
+  path: "/",
+  exact: true,
+  component: Home,
+};
+
+export const RESUME: IRoute = {
   title: "Resume",
   id: "resume",
-  path: "/Resume",
+  path: "/resume",
   exact: true,
   component: Resume,
 };
-export const GAMES = {
+export const GAMES: IRoute = {
   id: "games",
   title: "Games",
   path: "/games",
   component: Games,
 };
-export const GAME_OF_LIFE = {
+export const GAME_OF_LIFE: IRoute = {
   id: "game-of-life",
   parentId: GAMES.id,
   title: "Game Of Life",
@@ -29,7 +35,7 @@ export const GAME_OF_LIFE = {
   path: "/games/game-of-life",
   component: GameOfLife,
 };
-export const SUDOKU = {
+export const SUDOKU: IRoute = {
   id: "sudoku",
   parentId: GAMES.id,
   title: "Sudoku",
@@ -37,7 +43,8 @@ export const SUDOKU = {
   path: "/games/sudoku",
   component: Sudoku,
 };
-export const PAINT = {
+
+export const PAINT: IRoute = {
   id: "paint",
   parentId: GAMES.id,
   title: "Paint",

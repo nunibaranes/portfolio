@@ -20,6 +20,7 @@ import { StyledControllersAndSettings } from "./gameOfLife-styles";
 import { IController } from "./controllers/Controller.interface";
 import { generateBoard, cloneBoard } from "../common/board/boardUtils";
 import withAnimatedWrapper from "../../hoc/withAnimationWrapper";
+import { GAME_OF_LIFE } from "../../routers/routes";
 
 const initialBoardData: IBoardData = {
   rows: 40,
@@ -185,4 +186,5 @@ export default withAnimatedWrapper({
       </StyledWrapper>
     );
   },
+  data: { className: "game-of-life-section" },
 });

@@ -1,23 +1,18 @@
 import React, { ComponentType, useEffect, useState, useRef } from "react";
 import { IRefObject } from "../interfaces/common/ui";
-import { IRouteComponentProps } from "../routers/AppRouter";
-
-export type IWithAnimations = IRouteComponentProps<{
-  outerRef?: IRefObject<HTMLDivElement>;
-}>;
 
 /**
  * This HOC Wraps the component with animated div class
  */
 export default function withAnimatedWrapper<P extends object>({
   Component,
-  data = { animationClass: "slide-from-right" },
+  data,
 }: {
   Component: ComponentType<P>;
-  data?: { animationClass: string };
+  data: { animationClass?: string; className: string };
 }) {
   return function WithAnimatedWrapper(props: P) {
-    const { animationClass } = data;
+    const { animationClass = "slide-from-right", className } = data;
     const ref: IRefObject<HTMLDivElement> = useRef();
     const [isVisible, setIsVisible] = useState(false);
 
@@ -36,8 +31,8 @@ export default function withAnimatedWrapper<P extends object>({
     }, []);
 
     return (
-      <div ref={ref} className={`animated ${animationClass}`}>
-        <Component {...props} outerRef={ref} />
+      <div ref={ref} className={`${className} animated ${animationClass}`}>
+        <Component {...props} withProps={{ outerRef: ref }} />
       </div>
     );
   };

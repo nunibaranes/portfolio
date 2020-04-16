@@ -15,6 +15,7 @@ import {
   StyledSudokuFillOptions,
   StyledSudokuFillSingleOption,
 } from "./sudoku.styles";
+import { SUDOKU } from "../../routers/routes";
 
 const initialBoardData: IBoardData = {
   rows: 9,
@@ -155,4 +156,5 @@ export default withAnimatedWrapper({
       </StyledWrapper>
     );
   },
+  data: { className: "sudoku-section" },
 });

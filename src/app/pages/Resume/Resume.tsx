@@ -14,4 +14,5 @@ export default withAnimatedWrapper({
       </StyledWrapper>
     );
   },
+  data: { className: "resume-section" },
 });

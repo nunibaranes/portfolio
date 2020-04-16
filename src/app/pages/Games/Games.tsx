@@ -20,4 +20,5 @@ export default withAnimatedWrapper({
       </StyledWrapper>
     );
   },
+  data: { className: "games-section" },
 });
