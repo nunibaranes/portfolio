@@ -1,7 +1,7 @@
 import React from "react";
 import { GAMES } from "../../routers/routes";
 import { RouteMenu } from "../../routers/AppRouter";
-import { Link } from "react-router-dom";
+import { Link, Switch, Route } from "react-router-dom";
 import { findRouteById, getSubRoutesByRootId } from "../../routers/routeUtils";
 import { StyledWrapper } from "../../styles/common/common.styles";
 import withAnimatedWrapper from "../../hoc/withAnimationWrapper";
@@ -17,6 +17,11 @@ export default withAnimatedWrapper({
           <h2>{games.title}</h2>
         </Link>
         <RouteMenu routes={gamesSubRoutes} />
+        <Switch>
+          {gamesSubRoutes.map((route) => {
+            return <Route key={route.id} {...route} />;
+          })}
+        </Switch>
       </StyledWrapper>
     );
   },

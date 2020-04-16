@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import noonles from "../../../assets/images/nofarNoonles.jpg";
 import { StyledWrapper, StyledButton } from "../../styles/common/common.styles";
 import "../../styles/animations.scss";
-import { RESUME, HOME } from "../../routers/routes";
+import { RESUME } from "../../routers/routes";
 import { IRouteComponentProps } from "../../routers/AppRouter";
 import { IRefObject } from "../../interfaces/common/ui";
 import withAnimatedWrapper from "../../hoc/withAnimationWrapper";
@@ -27,7 +27,7 @@ export default withAnimatedWrapper({
             piece of information about me
           </p>
         </article>
-        <Link to="/resume">
+        <Link to={RESUME.path}>
           <StyledButton type="button">Start</StyledButton>
         </Link>
       </StyledWrapper>

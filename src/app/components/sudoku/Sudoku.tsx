@@ -15,7 +15,6 @@ import {
   StyledSudokuFillOptions,
   StyledSudokuFillSingleOption,
 } from "./sudoku.styles";
-import { SUDOKU } from "../../routers/routes";
 
 const initialBoardData: IBoardData = {
   rows: 9,

@@ -5,7 +5,6 @@ import Canvas from "./canvas/Canvas";
 import withAnimatedWrapper from "../../hoc/withAnimationWrapper";
 
 import { StyledWrapper } from "../../styles/common/common.styles";
-import { PAINT } from "../../routers/routes";
 
 export default withAnimatedWrapper({
   Component: function Paint() {

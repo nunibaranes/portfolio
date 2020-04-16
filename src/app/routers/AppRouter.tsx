@@ -3,14 +3,14 @@ import {
   Route,
   RouteComponentProps,
   Link,
-  useLocation,
+  Switch,
+  Redirect,
 } from "react-router-dom";
 
 import { routes } from "./routes";
 
 import { StyledNav } from "../styles/ui/ui.styles";
 import { StyledWrapper, IStyledWrapper } from "../styles/common/common.styles";
-import { IRefObject } from "../interfaces/common/ui";
 
 export type TParams = {
   id?: string;
@@ -57,24 +57,26 @@ export function RouteMenu(props: {
 export default function AppRouter() {
   return (
     <div>
-      {routes.map((route) => {
-        return <Route key={route.id} {...route} />;
-      })}
+      <Switch>
+        {routes.map((route) => {
+          return <Route key={route.id} {...route} />;
+        })}
+      </Switch>
     </div>
   );
 }
 
 // TODO: Improvements
-export function RenderSubRoute({ match }: RouteComponentProps<TParams>) {
-  const { params, url } = match;
-  const location = useLocation();
-  console.log("location", location);
-  const urlArr = url.split("/").filter((s: string) => Boolean(s));
-  console.log("urlArr", urlArr);
-  const [rootRouteId] = urlArr;
-  const subRoute = routes
-    .find(({ id }) => id === rootRouteId)
-    .routes.find(({ id }) => id === params.id);
+// export function RenderSubRoute({ match }: RouteComponentProps<TParams>) {
+//   const { params, url } = match;
+//   const location = useLocation();
+//   console.log("location", location);
+//   const urlArr = url.split("/").filter((s: string) => Boolean(s));
+//   console.log("urlArr", urlArr);
+//   const [rootRouteId] = urlArr;
+//   const subRoute = routes
+//     .find(({ id }) => id === rootRouteId)
+//     .routes.find(({ id }) => id === params.id);
 
-  return subRoute.component();
-}
+//   return subRoute.component();
+// }
