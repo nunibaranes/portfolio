@@ -1,10 +1,4 @@
 .animated {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: auto;
-  z-index: 2000;
   visibility: hidden;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
@@ -18,7 +12,7 @@
     visibility: visible;
   }
 
-  &.slide-from-right > * {
+  &.slide-from-right {
     -webkit-transform: translateX(100%);
     -moz-transform: translateX(100%);
     -ms-transform: translateX(100%);
@@ -29,7 +23,7 @@
     transition: all 0.5s cubic-bezier(0.25, 0.5, 0.5, 0.9);
   }
 
-  &.show.slide-from-right > * {
+  &.show.slide-from-right {
     -webkit-transform: translateX(0);
     -moz-transform: translateX(0);
     -ms-transform: translateX(0);
