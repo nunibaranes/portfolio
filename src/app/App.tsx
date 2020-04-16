@@ -5,7 +5,7 @@ import Header from "./layout/header/Header";
 import Main from "./layout/main/Main";
 import Footer from "./layout/footer/Footer";
 
-import { StyledApp } from "./styles/common/app.styles";
+import "./styles/app.scss";
 export interface ITheme {
   isDarkMode: boolean;
   toggleLabel: string;
@@ -29,14 +29,12 @@ export default function App() {
   const themeOptions = { theme, setTheme };
 
   return (
-    <StyledApp className="app">
-      <Router>
-        <ThemeContext.Provider value={themeOptions}>
-          <Header></Header>
-          <Main></Main>
-        </ThemeContext.Provider>
-        <Footer></Footer>
-      </Router>
-    </StyledApp>
+    <Router>
+      <ThemeContext.Provider value={themeOptions}>
+        <Header></Header>
+        <Main></Main>
+      </ThemeContext.Provider>
+      <Footer></Footer>
+    </Router>
   );
 }

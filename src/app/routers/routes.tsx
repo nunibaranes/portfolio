@@ -4,7 +4,7 @@ import Games from "../pages/Games/Games";
 import GameOfLife from "../components/game-of-life/GameOfLife";
 import Sudoku from "../components/sudoku/Sudoku";
 import Paint from "../components/paint/Paint";
-import { IRoute, RenderSubRoute } from "./AppRouter";
+import { IRoute } from "./AppRouter";
 import GuessWhoIAm from "../pages/GuessWhoIAm/GuessWhoIAm";
 
 export const HOME = "home";

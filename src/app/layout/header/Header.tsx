@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { StyledHeader } from "../../styles/common/layout.styles";
 import Settings from "../../components/settings/Settings";
 import { ThemeContext } from "../../App";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const { theme, setTheme } = useContext(ThemeContext);
@@ -19,7 +20,9 @@ export default function Header() {
 
   return (
     <StyledHeader className="header" isDarkMode={theme.isDarkMode}>
-      <span className="logo">Nofar Baranes</span>
+      <Link to="/">
+        <span className="logo">Nofar Baranes</span>
+      </Link>
       <Settings theme={theme} toggleDarkMode={toggleDarkMode} />
     </StyledHeader>
   );

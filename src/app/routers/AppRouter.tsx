@@ -10,15 +10,23 @@ import { routes } from "./routes";
 
 import { StyledNav } from "../styles/ui/ui.styles";
 import { StyledWrapper, IStyledWrapper } from "../styles/common/common.styles";
+import { IRefObject } from "../interfaces/common/ui";
 
-export type TParams = { id?: string; subId?: string };
+export type TParams = {
+  id?: string;
+};
+
 export type SRoutes = { routes?: IRoute[] };
+export interface IRouteComponentProps extends RouteComponentProps<TParams> {
+  show?: boolean;
+  outerRef?: IRefObject<HTMLDivElement>;
+}
 
 export interface IRoute {
   id: string;
   path: string;
   exact?: boolean;
-  component: (props?: RouteComponentProps<TParams>) => ReactElement;
+  component: (props?: IRouteComponentProps) => ReactElement;
   routes?: IRoute[];
   title?: string;
   parentId?: string;
