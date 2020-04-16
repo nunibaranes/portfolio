@@ -17,16 +17,15 @@ export type TParams = {
 };
 
 export type SRoutes = { routes?: IRoute[] };
-export interface IRouteComponentProps extends RouteComponentProps<TParams> {
-  show?: boolean;
-  outerRef?: IRefObject<HTMLDivElement>;
+export interface IRouteComponentProps<T> extends RouteComponentProps<TParams> {
+  withProps: T;
 }
 
 export interface IRoute {
   id: string;
   path: string;
   exact?: boolean;
-  component: (props?: IRouteComponentProps) => ReactElement;
+  component: (props?: IRouteComponentProps<any>) => ReactElement;
   routes?: IRoute[];
   title?: string;
   parentId?: string;

@@ -13,27 +13,27 @@
   -moz-transform: translateX(-50%) translateY(-50%);
   -ms-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
-}
 
-.show {
-  visibility: visible;
-}
+  &.show {
+    visibility: visible;
+  }
 
-.slide-from-right .content {
-  -webkit-transform: translateX(100%);
-  -moz-transform: translateX(100%);
-  -ms-transform: translateX(100%);
-  transform: translateX(100%);
-  opacity: 0;
-  -webkit-transition: all 0.5s cubic-bezier(0.25, 0.5, 0.5, 0.9);
-  -moz-transition: all 0.5s cubic-bezier(0.25, 0.5, 0.5, 0.9);
-  transition: all 0.5s cubic-bezier(0.25, 0.5, 0.5, 0.9);
-}
+  &.slide-from-right > * {
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
+    opacity: 0;
+    -webkit-transition: all 0.5s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+    -moz-transition: all 0.5s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+    transition: all 0.5s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+  }
 
-.show.slide-from-right .content {
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-  opacity: 1;
+  &.show.slide-from-right > * {
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
