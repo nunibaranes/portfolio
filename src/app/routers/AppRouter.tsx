@@ -1,12 +1,12 @@
-import React, { ReactElement, ComponentClass } from "react";
+import React, { ReactElement } from "react";
 import {
   Route,
   RouteComponentProps,
   Link,
   Switch,
   Redirect,
-  useLocation,
 } from "react-router-dom";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import { routes } from "./routes";
 
@@ -57,12 +57,20 @@ export function RouteMenu(props: {
 
 export default function AppRouter() {
   return (
-    <Switch>
-      {routes.map((route) => {
-        return <Route key={route.id} {...route} />;
-      })}
-      <Route path="*" component={() => <Redirect to="/404" />} />
-    </Switch>
+    <Route
+      render={({ location }) => (
+        <TransitionGroup className="pages">
+          <CSSTransition key={location.key} timeout={500} classNames="fade">
+            <Switch location={location}>
+              {routes.map((route) => {
+                return <Route key={route.id} {...route} />;
+              })}
+              <Route path="*" component={() => <Redirect to="/404" />} />
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
+      )}
+    />
   );
 }
 

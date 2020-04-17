@@ -54,7 +54,14 @@ export const StyledWrapper = styled("section")`
           ? withCustomBorderBottom || defaultBorder
           : ""
       };
-      align-items: ${alignItems || ""}
+      align-items: ${alignItems || ""};
+
+      &.animated-page {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+      }
     `;
   }}
 `;

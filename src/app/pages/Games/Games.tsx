@@ -10,7 +10,7 @@ export default function Games() {
   const gamesSubRoutes = getSubRoutesByRootId(GAMES.id);
 
   return (
-    <StyledWrapper className="games">
+    <StyledWrapper className="animated-page games">
       <Link to={GAMES.path}>
         <h2>{games.title}</h2>
       </Link>

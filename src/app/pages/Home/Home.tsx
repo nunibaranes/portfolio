@@ -7,13 +7,9 @@ import { RESUME } from "../../routers/routes";
 import { IRouteComponentProps } from "../../routers/AppRouter";
 import { IRefObject } from "../../interfaces/common/ui";
 
-export default function Home(
-  props: IRouteComponentProps<{
-    outerRef: IRefObject<HTMLDivElement>;
-  }>
-) {
+export default function Home() {
   return (
-    <StyledWrapper className="content" alignItems="center">
+    <StyledWrapper className="animated-page home" alignItems="center">
       <img src={noonles} className="noonles" alt="Nofar Baranes" />
       <h1>Hi, I'm Nofar Baranes</h1>
 

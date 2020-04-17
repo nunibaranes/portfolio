@@ -7,7 +7,7 @@ export default function Resume() {
   const rootRoute: IRoute = routes.find(({ id }) => id === RESUME.id);
 
   return (
-    <StyledWrapper>
+    <StyledWrapper className="animated-page resume">
       <h2>{rootRoute.title}</h2>
     </StyledWrapper>
   );
