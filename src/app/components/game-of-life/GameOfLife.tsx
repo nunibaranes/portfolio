@@ -146,7 +146,7 @@ export default function GameOfLife() {
   );
 
   return (
-    <StyledWrapper className="game-of-life" withBorder>
+    <StyledWrapper className="animated-game game-of-life" withBorder>
       <Title
         title={"Game Of Life"}
         alignment={Alignment.Center}

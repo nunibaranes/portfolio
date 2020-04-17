@@ -1,6 +1,5 @@
 import React from "react";
 
-import { IRoute } from "../../../interfaces/common/router";
 import {
   IStyledWrapper,
   StyledWrapper,
@@ -9,13 +8,18 @@ import {
 import { StyledNav } from "../../../styles/ui/ui.styles";
 import { Link } from "react-router-dom";
 import { IMenuItem, MenuType } from "../../../interfaces/common/ui";
+import { IRoute } from "../../../interfaces/common/router";
 
-export function Menu(props: {
-  items: IMenuItem[];
+type Item = IMenuItem | IRoute;
+
+type MenuProps = {
+  items: Item[];
   wrapperStyles?: IStyledWrapper;
   type?: MenuType;
-  activeItemChanged?: (item: IMenuItem) => void;
-}) {
+  activeItemChanged?: (id: string) => void;
+};
+
+export function Menu(props: MenuProps) {
   const defaultStyles = {
     alignItems: "center",
   };
@@ -47,20 +51,20 @@ export function Menu(props: {
 
 function MenuItem(props: {
   item: IMenuItem;
-  onClickItem: (item: IMenuItem) => void;
+  onClickItem: (id: string) => void;
 }) {
   const { item, onClickItem } = props;
   return (
     <li>
-      <StyledButton onClick={() => onClickItem(item)}>
+      <StyledButton onClick={() => onClickItem(item.id)}>
         {item.title}
       </StyledButton>
     </li>
   );
 }
 
-function RouteMenuItem(item: IMenuItem) {
-  const { title, path, id } = item;
+function RouteMenuItem(item: IRoute) {
+  const { title, path } = item;
   return (
     <li>
       <Link to={`${path}`}>{title}</Link>

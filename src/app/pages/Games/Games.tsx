@@ -1,41 +1,43 @@
-import React, { useState, memo } from "react";
+import React, { useState, useEffect } from "react";
 import { GAMES } from "../../routers/routes";
 import { Link } from "react-router-dom";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+
 import { findRouteById } from "../../routers/routeUtils";
-import { StyledWrapper } from "../../styles/common/common.styles";
 
 import GameOfLife from "../../components/game-of-life/GameOfLife";
 import Sudoku from "../../components/sudoku/Sudoku";
 import Paint from "../../components/paint/Paint";
 import { IMenuItem, MenuType } from "../../interfaces/common/ui";
 import { Menu } from "../../components/common/menu/Menu";
+import { StyledWrapper } from "../../styles/common/common.styles";
+import "../../styles/animations/zoom-animations.scss";
 
 export const GAME_OF_LIFE: IMenuItem = {
   id: "game-of-life",
   title: "Game Of Life",
-  isActive: true,
-  component: GameOfLife,
+  children: <GameOfLife />,
 };
+
 export const SUDOKU: IMenuItem = {
   id: "sudoku",
   title: "Sudoku",
-  component: Sudoku,
+  children: <Sudoku />,
 };
 
 export const PAINT: IMenuItem = {
   id: "paint",
   title: "Paint",
-  component: Paint,
+  children: <Paint />,
 };
 
 export default function Games() {
   const gamesRoute = findRouteById(GAMES.id);
-  const games = [GAME_OF_LIFE, SUDOKU, PAINT];
-  const [activeGame, setActiveGame] = useState(GAME_OF_LIFE);
+  const games: IMenuItem[] = [GAME_OF_LIFE, SUDOKU, PAINT];
+  const [activeGameId, setActiveGameId] = useState(GAME_OF_LIFE.id);
 
-  const activeItemChanged = (item: IMenuItem) => {
-    console.log("activeItemChanged item", item);
-    setActiveGame(item);
+  const activeItemChanged = (id: string) => {
+    setActiveGameId(id);
   };
 
   return (
@@ -48,6 +50,23 @@ export default function Games() {
         type={MenuType.Default}
         activeItemChanged={activeItemChanged}
       />
+      <TransitionGroup className="games">
+        <CSSTransition key={activeGameId} timeout={500} classNames="zoom">
+          <Game gameId={activeGameId} games={games} />
+        </CSSTransition>
+      </TransitionGroup>
     </StyledWrapper>
   );
+}
+
+function Game({ gameId, games }: { gameId: string; games: IMenuItem[] }) {
+  const getGameById = (id: string) => games.find((game) => game.id === id);
+
+  let game: IMenuItem = getGameById(gameId);
+
+  useEffect(() => {
+    game = getGameById(gameId);
+  }, [gameId]);
+
+  return <div className="animated-game">{game.children}</div>;
 }

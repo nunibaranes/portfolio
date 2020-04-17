@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 import { RouteComponentProps } from "react-router-dom";
+import { IMenuItem } from "./ui";
 
 export type TParams = {
   id?: string;
@@ -10,12 +11,9 @@ export interface IRouteComponentProps<T> extends RouteComponentProps<TParams> {
   withProps: T;
 }
 
-export interface IRoute {
-  id: string;
+export interface IRoute extends IMenuItem {
   path?: string;
   exact?: boolean;
-  component: (props?: IRouteComponentProps<any>) => ReactElement;
   routes?: IRoute[];
-  title?: string;
-  parentId?: string;
+  component?: (props?: IRouteComponentProps<any>) => ReactElement;
 }

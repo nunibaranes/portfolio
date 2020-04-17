@@ -16,11 +16,14 @@ export interface IRefObject<T> {
   readonly current: T | null;
 }
 
-export interface IMenuItem extends IRoute {
-  isActive?: boolean;
-}
-
 export enum MenuType {
   Default = "default",
   Route = "route",
+}
+
+export interface IMenuItem {
+  id: string;
+  title?: string;
+  isActive?: boolean;
+  children?: JSX.Element;
 }

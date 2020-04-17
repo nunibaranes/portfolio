@@ -5,7 +5,7 @@ export const findRouteById = (targetId: string): IRoute =>
   routes.find(({ id }) => id === targetId);
 
 export const getSubRoutesByRootId = (rootId: string): IRoute[] =>
-  routes.filter(({ id, parentId }) => id !== rootId && parentId === rootId);
+  routes.filter(({ id }) => id !== rootId);
 
 export const parseRelativeRoutes = ({
   routes,

@@ -3,7 +3,7 @@ import { Route, Link, Switch, Redirect } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import { routes } from "./routes";
-import "../styles/animations/page-animations.scss";
+import "../styles/animations/fade-in-animations.scss";
 
 export default function AppRouter() {
   return (
