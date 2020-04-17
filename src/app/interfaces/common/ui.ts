@@ -1,3 +1,5 @@
+import { IRoute } from "./router";
+
 export enum Alignment {
   /** horizontal-alignments */
   Right = "right",
@@ -12,4 +14,13 @@ export enum Alignment {
 
 export interface IRefObject<T> {
   readonly current: T | null;
+}
+
+export interface IMenuItem extends IRoute {
+  isActive?: boolean;
+}
+
+export enum MenuType {
+  Default = "default",
+  Route = "route",
 }

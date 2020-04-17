@@ -1,5 +1,5 @@
 import { routes } from "./routes";
-import { IRoute } from "./AppRouter";
+import { IRoute } from "../interfaces/common/router";
 
 export const findRouteById = (targetId: string): IRoute =>
   routes.find(({ id }) => id === targetId);

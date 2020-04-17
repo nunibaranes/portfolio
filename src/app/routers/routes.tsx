@@ -1,10 +1,9 @@
 import React from "react";
+
+import { IRoute } from "../interfaces/common/router";
+
 import Home from "../pages/Home/Home";
 import Games from "../pages/Games/Games";
-import GameOfLife from "../components/game-of-life/GameOfLife";
-import Sudoku from "../components/sudoku/Sudoku";
-import Paint from "../components/paint/Paint";
-import { IRoute } from "./AppRouter";
 import Resume from "../pages/Resume/Resume";
 import NotFound from "../pages/NotFound/NotFound";
 
@@ -28,31 +27,6 @@ export const GAMES: IRoute = {
   path: "/games",
   component: Games,
 };
-export const GAME_OF_LIFE: IRoute = {
-  id: "game-of-life",
-  parentId: GAMES.id,
-  title: "Game Of Life",
-  exact: true,
-  path: "/games/game-of-life",
-  component: GameOfLife,
-};
-export const SUDOKU: IRoute = {
-  id: "sudoku",
-  parentId: GAMES.id,
-  title: "Sudoku",
-  exact: true,
-  path: "/games/sudoku",
-  component: Sudoku,
-};
-
-export const PAINT: IRoute = {
-  id: "paint",
-  parentId: GAMES.id,
-  title: "Paint",
-  exact: true,
-  path: "/games/paint",
-  component: Paint,
-};
 
 export const NOT_FOUND: IRoute = {
   id: "not-found",
@@ -61,12 +35,4 @@ export const NOT_FOUND: IRoute = {
   component: NotFound,
 };
 
-export const routes: IRoute[] = [
-  HOME,
-  RESUME,
-  GAMES,
-  GAME_OF_LIFE,
-  SUDOKU,
-  PAINT,
-  NOT_FOUND,
-];
+export const routes: IRoute[] = [HOME, RESUME, GAMES, NOT_FOUND];

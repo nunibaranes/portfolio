@@ -1,5 +1,6 @@
 import React from "react";
-import { IRoute } from "../../routers/AppRouter";
+
+import { IRoute } from "../../interfaces/common/router";
 import { routes, RESUME } from "../../routers/routes";
 import { StyledWrapper } from "../../styles/common/common.styles";
 

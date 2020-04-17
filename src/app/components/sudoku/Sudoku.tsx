@@ -31,12 +31,6 @@ const initialBoardData: IBoardData = {
 export default function Sudoku() {
   initialBoardData.puzzle = generateBoard(initialBoardData);
   const title: string = "Sudoku Game";
-  const [cellOptions, setCellOptions] = useState([]);
-  const [boardData, setBoardData] = useState(initialBoardData);
-  const [popupIsOpen, togglePopup] = useState(false);
-  const [boardStatus, setBoardStatus] = useState(initialBoardData.puzzle);
-  const [selectedCell, setSelectedCell] = useState(null);
-
   /**
    * getCellOptions
    */
@@ -47,10 +41,11 @@ export default function Sudoku() {
     });
     return options;
   };
-
-  useEffect(() => {
-    setCellOptions(getCellOptions(1, 9));
-  }, []);
+  const [cellOptions, setCellOptions] = useState(getCellOptions(1, 9));
+  const [boardData, setBoardData] = useState(initialBoardData);
+  const [popupIsOpen, togglePopup] = useState(false);
+  const [boardStatus, setBoardStatus] = useState(initialBoardData.puzzle);
+  const [selectedCell, setSelectedCell] = useState(null);
 
   /**
    * cellClicked
