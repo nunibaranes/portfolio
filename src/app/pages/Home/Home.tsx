@@ -1,11 +1,8 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import noonles from "../../../assets/images/nofarNoonles.jpg";
 import { StyledWrapper, StyledButton } from "../../styles/common/common.styles";
-import "../../styles/animations.scss";
 import { RESUME } from "../../routers/routes";
-import { IRouteComponentProps } from "../../routers/AppRouter";
-import { IRefObject } from "../../interfaces/common/ui";
 
 export default function Home() {
   return (

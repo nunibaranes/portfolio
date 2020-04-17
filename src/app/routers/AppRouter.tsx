@@ -12,6 +12,7 @@ import { routes } from "./routes";
 
 import { StyledNav } from "../styles/ui/ui.styles";
 import { StyledWrapper, IStyledWrapper } from "../styles/common/common.styles";
+import "../styles/animations/page-animations.scss";
 
 export type TParams = {
   id?: string;
@@ -60,10 +61,16 @@ export default function AppRouter() {
     <Route
       render={({ location }) => (
         <TransitionGroup className="pages">
-          <CSSTransition key={location.key} timeout={500} classNames="fade">
+          <CSSTransition
+            key={location.key}
+            timeout={500}
+            classNames="fade-page"
+          >
             <Switch location={location}>
               {routes.map((route) => {
-                return <Route key={route.id} {...route} />;
+                if (!route.parentId) {
+                  return <Route key={route.id} {...route} />;
+                }
               })}
               <Route path="*" component={() => <Redirect to="/404" />} />
             </Switch>
