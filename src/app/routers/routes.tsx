@@ -6,6 +6,7 @@ import Sudoku from "../components/sudoku/Sudoku";
 import Paint from "../components/paint/Paint";
 import { IRoute } from "./AppRouter";
 import Resume from "../pages/Resume/Resume";
+import NotFound from "../pages/NotFound/NotFound";
 
 export const HOME: IRoute = {
   id: "home",
@@ -53,6 +54,13 @@ export const PAINT: IRoute = {
   component: Paint,
 };
 
+export const NOT_FOUND: IRoute = {
+  id: "not-found",
+  title: "Not Found 404",
+  path: "/404",
+  component: NotFound,
+};
+
 export const routes: IRoute[] = [
   HOME,
   RESUME,
@@ -60,4 +68,5 @@ export const routes: IRoute[] = [
   GAME_OF_LIFE,
   SUDOKU,
   PAINT,
+  NOT_FOUND,
 ];

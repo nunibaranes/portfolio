@@ -5,6 +5,7 @@ import {
   Link,
   Switch,
   Redirect,
+  useLocation,
 } from "react-router-dom";
 
 import { routes } from "./routes";
@@ -23,7 +24,7 @@ export interface IRouteComponentProps<T> extends RouteComponentProps<TParams> {
 
 export interface IRoute {
   id: string;
-  path: string;
+  path?: string;
   exact?: boolean;
   component: (props?: IRouteComponentProps<any>) => ReactElement;
   routes?: IRoute[];
@@ -56,13 +57,12 @@ export function RouteMenu(props: {
 
 export default function AppRouter() {
   return (
-    <div>
-      <Switch>
-        {routes.map((route) => {
-          return <Route key={route.id} {...route} />;
-        })}
-      </Switch>
-    </div>
+    <Switch>
+      {routes.map((route) => {
+        return <Route key={route.id} {...route} />;
+      })}
+      <Route path="*" component={() => <Redirect to="/404" />} />
+    </Switch>
   );
 }
 
