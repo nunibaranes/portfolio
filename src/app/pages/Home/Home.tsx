@@ -6,7 +6,7 @@ import {
   StyledSVGWrapper,
 } from "../../styles/common/common.styles";
 import { RESUME } from "../../routers/routes";
-import { StyledHomeWrapper } from "./home.styles";
+import { StyledHomeWrapper } from "./home-styles";
 
 /**
  * TODO:
@@ -33,7 +33,12 @@ export default function Home() {
     <StyledHomeWrapper className="animated-page home" alignItems="center">
       <div className="content">
         <h1>Hi, I'm Nofar Baranes</h1>
-        <StyledSVGWrapper className="noonles" width="300px" height="300px">
+        <StyledSVGWrapper
+          className="noonles"
+          width="300px"
+          height="300px"
+          fill="transparent"
+        >
           <Logo />
         </StyledSVGWrapper>
         <article className="paragraph-wrapper">
