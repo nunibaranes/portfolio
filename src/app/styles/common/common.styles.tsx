@@ -108,7 +108,6 @@ export const StyledButton = styled("button")`
 
 export const StyledToggleButton = styled(StyledButton)`
   ${({ isActive }: { isActive: boolean }) => {
-    // text-indent: -9999px;
     return `
     min-width: 55px;
     height: 30px;
@@ -131,7 +130,7 @@ export const StyledToggleButton = styled(StyledButton)`
       left: 2px;
       top: 50%;
       transform: translateY(-50%);
-      transition: left 0.2s cubic-bezier(0.68, -0.55, 0.27, 01.55) 320ms;
+      transition: left 0.2s cubic-bezier(0.68, -0.55, 0.27, 01.55) 200ms;
       display: flex;
       justify-content: center;
       align-items: center;
