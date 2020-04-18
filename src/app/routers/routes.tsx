@@ -2,10 +2,10 @@ import React from "react";
 
 import { IRoute } from "../interfaces/common/router";
 
-import Home from "../pages/Home/Home";
-import Games from "../pages/Games/Games";
-import Resume from "../pages/Resume/Resume";
-import NotFound from "../pages/NotFound/NotFound";
+import Home from "../pages/home/Home";
+import Games from "../pages/games/Games";
+import Resume from "../pages/resume/Resume";
+import NotFound from "../pages/not-found/NotFound";
 
 export const HOME: IRoute = {
   id: "home",
