@@ -25,5 +25,7 @@ export interface IMenuItem {
   id: string;
   title?: string;
   isActive?: boolean;
+  hidden?: boolean;
+  disabled?: boolean;
   children?: JSX.Element;
 }
