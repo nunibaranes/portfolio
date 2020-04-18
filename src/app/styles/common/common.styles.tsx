@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Alignment } from "../../interfaces/common/ui";
+import { Alignment, IStyledSVGWrapper } from "../../interfaces/common/ui";
 import { getStyledButton } from "./layout.styles";
 import { ReactNode } from "react";
 
@@ -63,6 +63,7 @@ export const StyledWrapper = styled("section")`
         top: 0;
         right: 0;
         left: 0;
+        height: 100%;
       }
     `;
   }}
@@ -152,14 +153,32 @@ export const StyledToggleButton = styled(StyledButton)`
   }}
 `;
 
-export const StyledSVGIcon = styled("svg")`
-  ${(props: { width?: string; height?: string; margin?: string }) => {
-    const { width = "30px", height = "30px", margin = "0 auto" } = props;
+export const StyledSVGWrapper = styled("svg")`
+  ${(props: IStyledSVGWrapper) => {
+    const {
+      stroke = "#000",
+      fill = "#fff",
+      strokeWidth = "5px",
+      width = "100px",
+      height = "100px",
+      margin = "0 auto",
+    } = props;
 
     return `
       width: ${width};
       height: ${height};
       margin: ${margin};
+
+      svg {
+        width: 100%;
+        height: 100%;
+
+        g {
+          stroke: ${stroke};
+          fill: ${fill};
+          stroke-width: ${strokeWidth};
+        }
+      }
     `;
   }}
 `;

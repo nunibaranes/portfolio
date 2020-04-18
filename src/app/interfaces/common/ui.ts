@@ -29,3 +29,13 @@ export interface IMenuItem {
   disabled?: boolean;
   children?: JSX.Element;
 }
+
+export interface IStyledSVGWrapper {
+  className?: string;
+  stroke?: string;
+  fill?: string;
+  strokeWidth?: string;
+  width?: string;
+  height?: string;
+  margin?: string;
+}

@@ -1,12 +1,14 @@
 import styled from "styled-components";
+
 import {
   StyledWrapper,
   StyledLink,
-  StyledSVGIcon,
   StyledButton,
   StyledToggleButton,
+  StyledSVGWrapper,
 } from "./common.styles";
 
+// TODO: move to ui
 export const getStyledButton = ({
   isDarkMode,
   lightColor = "white",
@@ -54,15 +56,27 @@ export const StyledHeader = styled("header")`
   justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   color: white;
-  padding: 0 20px;
+  padding: 10px 20px;
 
   ${(props: { isDarkMode?: boolean }) => {
     const { isDarkMode } = props;
     return `
       .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin-bottom: 10px;
         margin-block-start: 0;
         color: ${isDarkMode ? "white" : "black"};
+
+        ${StyledSVGWrapper} {
+          background-color: ${isDarkMode ? "white" : "black"};
+          border-radius: 50%;
+          overflow: hidden;
+          padding: 2px;
+          margin-right: 10px;
+          transform: background-color 0.3s;
+        }
       }
     `;
   }}
@@ -91,13 +105,6 @@ export const StyledMainContainer = styled("section")`
     `;
     }}
   }
-
-  .noonles {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-    border-radius: 50%;
-  }
 `;
 
 export const StyledFooter = styled("footer")`
@@ -125,8 +132,10 @@ export const StyledFooter = styled("footer")`
     justify-content: center;
   }
 
-  ${StyledSVGIcon} {
+  ${StyledSVGWrapper} {
     margin-right: 10px;
     margin-left: 0;
+    height: 30px;
+    width: 20px;
   }
 `;
