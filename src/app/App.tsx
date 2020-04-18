@@ -1,20 +1,44 @@
-import React from "react";
+import React, { useState, createContext, ReactNode } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import Header from "./layout/header/Header";
 import Main from "./layout/main/Main";
 import Footer from "./layout/footer/Footer";
 
-import { StyledApp } from "./styles/common/layout.styles";
+import "./styles/app.scss";
+import {
+  themeLabel,
+  ILabelToggle,
+} from "./components/common/toggle-button/ToggleButton";
+export interface ITheme {
+  isDarkMode: boolean;
+  toggleLabel: ILabelToggle;
+}
+
+const initialTheme: ITheme = {
+  isDarkMode: false,
+  toggleLabel: themeLabel.off,
+};
+
+interface IThemeOptions {
+  theme: ITheme;
+  setTheme: React.Dispatch<React.SetStateAction<ITheme>>;
+}
+
+export const ThemeContext = createContext<IThemeOptions | null>(null);
 
 export default function App() {
+  const [theme, setTheme] = useState(initialTheme);
+
+  const themeOptions = { theme, setTheme };
+
   return (
-    <StyledApp className="app">
-      <Router>
+    <Router>
+      <ThemeContext.Provider value={themeOptions}>
         <Header></Header>
         <Main></Main>
-        <Footer></Footer>
-      </Router>
-    </StyledApp>
+      </ThemeContext.Provider>
+      <Footer></Footer>
+    </Router>
   );
 }

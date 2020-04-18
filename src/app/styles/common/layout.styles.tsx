@@ -1,72 +1,126 @@
 import styled from "styled-components";
+
 import {
   StyledWrapper,
   StyledLink,
-  StyledSVGIcon,
   StyledButton,
+  StyledToggleButton,
+  StyledSVGWrapper,
 } from "./common.styles";
 
-export const StyledApp = styled("div")`
-  text-align: center;
+// TODO: move to ui
+export const getStyledButton = ({
+  isDarkMode,
+  lightColor = "white",
+  darkColor = "black",
+}: {
+  isDarkMode: boolean;
+  lightColor?: string;
+  darkColor?: string;
+}): string => {
+  return `
+  ${StyledButton} {
+    border: 1px solid ${isDarkMode ? lightColor : darkColor};
+    color: ${isDarkMode ? lightColor : darkColor};
 
-  * {
-    box-sizing: border-box;
+    &:hover{
+        color: ${isDarkMode ? darkColor : lightColor};
+        background-color: ${isDarkMode ? lightColor : darkColor};
+    }
+  }
+
+  ${StyledToggleButton} {
+    background: ${isDarkMode ? lightColor : darkColor};
+    
+    .label {
+      background: ${isDarkMode ? darkColor : lightColor};
+    }
+
+    &: hover {
+      color: ${isDarkMode ? lightColor : darkColor};
+    }
   }
 `;
+};
 
 export const StyledHeader = styled("header")`
-  background-color: #282c34;
-  background-image: ${(props: { background: string }) =>
-    `url(${props.background})` || "none"};
-  min-height: 100vh;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 50px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 10px 20px;
 
-  .noonles {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-    border-radius: 50%;
-  }
+  ${(props: { isDarkMode?: boolean }) => {
+    const { isDarkMode } = props;
+    return `
+      .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+        margin-block-start: 0;
+        color: ${isDarkMode ? "white" : "black"};
+
+        ${StyledSVGWrapper} {
+          background-color: ${isDarkMode ? "white" : "black"};
+          border-radius: 50%;
+          overflow: hidden;
+          padding: 2px;
+          margin-right: 10px;
+          transform: background-color 0.3s;
+        }
+      }
+    `;
+  }}
 `;
 
 export const StyledMainContainer = styled("section")`
+  position: relative;
+  min-height: 100vh;
+  padding: 50px 0;
+  transition: background-color 0.5s, color 0.5s;
+
   && {
-    ${(props: { isDarkMode: boolean }) => {
-      const { isDarkMode } = props;
+    ${(props: {
+      isDarkMode?: boolean;
+      darkColor?: string;
+      lightColor?: string;
+    }) => {
+      const { isDarkMode, darkColor = "black", lightColor = "white" } = props;
+
       return `
-        min-height: 50vh;
-        padding: 50px 0;
-        background-color: ${isDarkMode ? "black" : "white"};
-        color: ${isDarkMode ? "white" : "black"};
+        background-color: ${isDarkMode ? darkColor : lightColor};
+        color: ${isDarkMode ? lightColor : darkColor};
+        
 
-        ${StyledButton} {
-          border: 1px solid ${isDarkMode ? "#fff" : "#000"};
-          color: ${isDarkMode ? "white" : "black"};
-
-          &:hover{
-              color: ${isDarkMode ? "#000" : "#fff"};
-              background-color: ${isDarkMode ? "#fff" : "#000"};
-          }
-        }
+        ${getStyledButton({ isDarkMode })}
     `;
     }}
   }
 `;
 
 export const StyledFooter = styled("footer")`
-  min-height: 100px;
+  position: fixed;
+  z-index: 2;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-height: 50px;
   background-color: #282c34;
   color: #fff;
-  padding: 20px;
   display: flex;
 
   ${StyledWrapper} {
     flex-direction: row;
+    margin: 0 auto;
   }
 
   ${StyledLink} {
@@ -78,8 +132,10 @@ export const StyledFooter = styled("footer")`
     justify-content: center;
   }
 
-  ${StyledSVGIcon} {
+  ${StyledSVGWrapper} {
     margin-right: 10px;
     margin-left: 0;
+    height: 30px;
+    width: 20px;
   }
 `;

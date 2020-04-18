@@ -1,24 +1,38 @@
-import React, {useState} from 'react';
-import { StyledButton } from '../../../styles/common/common.styles';
+import React, { useState, ReactNode } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
+
+import { StyledToggleButton } from "../../../styles/common/common.styles";
+
+export type ILabelToggle = string | ReactNode;
+
+export const themeLabel = {
+  on: <FontAwesomeIcon className="far" icon={faLightbulb} />,
+  off: <FontAwesomeIcon className="fas" icon={faLightbulb} />,
+};
 
 interface IToggleButtonProps {
-    label: string;
-    toggleButtonClicked: (to: boolean) => void;
+  label: ILabelToggle;
+  toggleButtonClicked: (to: boolean) => void;
 }
 
 export default function ToggleButton(props: IToggleButtonProps) {
-    const {label, toggleButtonClicked} = props;
-    const [isClicked, setIsClicked] = useState(false);
+  const { label, toggleButtonClicked } = props;
+  const [isClicked, setIsClicked] = useState(false);
 
-    const toggleClicked = (to:boolean):void => {
-        setIsClicked(to);
-        toggleButtonClicked(to);
-    }
+  const toggleClicked = (to: boolean): void => {
+    setIsClicked(to);
+    toggleButtonClicked(to);
+  };
 
-    return (
-    <StyledButton className='btn'
-        onClick={() => toggleClicked(!isClicked)}
+  return (
+    <StyledToggleButton
+      isActive={isClicked}
+      className="btn"
+      type="button"
+      onClick={() => toggleClicked(!isClicked)}
     >
-        {label}
-    </StyledButton>);
+      <span className="label">{label}</span>
+    </StyledToggleButton>
+  );
 }

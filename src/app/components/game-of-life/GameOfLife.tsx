@@ -69,6 +69,11 @@ export default function GameOfLife() {
       toggleTimerIsRunning(false);
       setDisableNextGeneration(true);
     }
+
+    return () => {
+      toggleTimerIsRunning(false);
+      setDisableNextGeneration(true);
+    };
   }, [isGameOver]);
 
   // Component updated - timerIsRunning changed
@@ -76,6 +81,9 @@ export default function GameOfLife() {
     setBoardData((prevBoardData) => {
       return { ...prevBoardData, gameIsRunning: timerIsRunning };
     });
+    return () => {
+      setBoardData(initialBoardData);
+    };
   }, [timerIsRunning]);
 
   const toggleCellIsActive = (
@@ -138,7 +146,7 @@ export default function GameOfLife() {
   );
 
   return (
-    <StyledWrapper className="game-of-life" withBorder>
+    <StyledWrapper className="animated-game game-of-life" withBorder>
       <Title
         title={"Game Of Life"}
         alignment={Alignment.Center}

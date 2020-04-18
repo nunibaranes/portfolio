@@ -3,15 +3,17 @@ import React, { useState, useEffect } from "react";
 import Title from "../common/title/Title";
 import Board from "../common/board/Board";
 import Popup from "../common/popup/Popup";
+
+import { generateBoard, cloneBoard } from "../common/board/boardUtils";
+
 import { ICell } from "../common/board/cell/Cell.interface";
+import { Alignment } from "../../interfaces/common/ui";
 import { BoardType, IBoardData } from "../common/board/Board.interface";
 import { StyledWrapper } from "../../styles/common/common.styles";
 import {
   StyledSudokuFillOptions,
   StyledSudokuFillSingleOption,
 } from "./sudoku.styles";
-import { Alignment } from "../../interfaces/common/ui";
-import { generateBoard, cloneBoard } from "../common/board/boardUtils";
 
 const initialBoardData: IBoardData = {
   rows: 9,
@@ -29,12 +31,6 @@ const initialBoardData: IBoardData = {
 export default function Sudoku() {
   initialBoardData.puzzle = generateBoard(initialBoardData);
   const title: string = "Sudoku Game";
-  const [cellOptions, setCellOptions] = useState([]);
-  const [boardData, setBoardData] = useState(initialBoardData);
-  const [popupIsOpen, togglePopup] = useState(false);
-  const [boardStatus, setBoardStatus] = useState(initialBoardData.puzzle);
-  const [selectedCell, setSelectedCell] = useState(null);
-
   /**
    * getCellOptions
    */
@@ -45,10 +41,11 @@ export default function Sudoku() {
     });
     return options;
   };
-
-  useEffect(() => {
-    setCellOptions(getCellOptions(1, 9));
-  }, []);
+  const [cellOptions, setCellOptions] = useState(getCellOptions(1, 9));
+  const [boardData, setBoardData] = useState(initialBoardData);
+  const [popupIsOpen, togglePopup] = useState(false);
+  const [boardStatus, setBoardStatus] = useState(initialBoardData.puzzle);
+  const [selectedCell, setSelectedCell] = useState(null);
 
   /**
    * cellClicked

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Settings from "./settings/Settings";
 import WindowResize from "../common/window-resize/WindowResize";
-// import Canvas from './canvas/Canvas';
 import Canvas from "./canvas/Canvas";
 
 import { StyledWrapper } from "../../styles/common/common.styles";
