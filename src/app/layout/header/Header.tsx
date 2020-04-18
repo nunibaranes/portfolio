@@ -15,12 +15,12 @@ export default function Header() {
   const { theme, setTheme } = useContext(ThemeContext);
   const isHomePage = pathname === HOME.path;
   const logo = (
-    <span className="logo">
+    <>
       <StyledSVGWrapper height="50px" width="50px" strokeWidth="8px">
         <Logo />
       </StyledSVGWrapper>
-      <span className="label"> Nofar Baranes </span>
-    </span>
+      <span className="label"> Home </span>
+    </>
   );
   const toggleDarkMode = (to: boolean) => {
     const label = to ? themeLabel.on : themeLabel.off;
@@ -33,7 +33,13 @@ export default function Header() {
 
   return (
     <StyledHeader className="header" isDarkMode={theme.isDarkMode}>
-      {isHomePage ? logo : <Link to="/">{logo}</Link>}
+      {isHomePage ? (
+        <span className="logo home">{logo}</span>
+      ) : (
+        <Link className="logo" to="/">
+          {logo}
+        </Link>
+      )}
       <Settings theme={theme} toggleDarkMode={toggleDarkMode} />
     </StyledHeader>
   );

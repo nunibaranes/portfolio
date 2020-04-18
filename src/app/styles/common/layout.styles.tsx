@@ -68,14 +68,33 @@ export const StyledHeader = styled("header")`
         margin-bottom: 10px;
         margin-block-start: 0;
         color: ${isDarkMode ? "white" : "black"};
+        cursor: auto;
+        
+        &:not(.home) {
+          cursor: pointer;
 
+          ${StyledSVGWrapper} {
+            &:hover {
+            &+ .label {
+              visibility: visible;
+              opacity: 1;
+            }
+          }
+          }
+        }
         ${StyledSVGWrapper} {
           background-color: ${isDarkMode ? "white" : "black"};
           border-radius: 50%;
           overflow: hidden;
           padding: 2px;
           margin-right: 10px;
-          transform: background-color 0.3s;
+          transition: background-color 0.3s;
+        }
+
+        .label {
+          visibility: hidden;
+          opacity: 0;
+          transition: opacity 0.3s;
         }
       }
     `;

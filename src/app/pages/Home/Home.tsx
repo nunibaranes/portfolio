@@ -31,8 +31,7 @@ import { StyledHomeWrapper } from "./home-styles";
 export default function Home() {
   return (
     <StyledHomeWrapper className="animated-page home" alignItems="center">
-      <div className="content">
-        <h1>Hi, I'm Nofar Baranes</h1>
+      <div className="first half">
         <StyledSVGWrapper
           className="noonles"
           width="300px"
@@ -41,6 +40,9 @@ export default function Home() {
         >
           <Logo />
         </StyledSVGWrapper>
+        <h1>Hi, I'm Nofar Baranes</h1>
+      </div>
+      <div className="second half">
         <article className="paragraph-wrapper">
           <p>
             I am 30 years old, living in Tel-Aviv, Israel <br />
