@@ -1,11 +1,14 @@
 import React, { useState, ReactNode } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
+
 import { StyledToggleButton } from "../../../styles/common/common.styles";
 
 export type ILabelToggle = string | ReactNode;
 
 export const themeLabel = {
-  on: "Light",
-  off: "Dark",
+  on: <FontAwesomeIcon className="far" icon={faLightbulb} />,
+  off: <FontAwesomeIcon className="fas" icon={faLightbulb} />,
 };
 
 interface IToggleButtonProps {
@@ -26,6 +29,7 @@ export default function ToggleButton(props: IToggleButtonProps) {
     <StyledToggleButton
       isActive={isClicked}
       className="btn"
+      type="button"
       onClick={() => toggleClicked(!isClicked)}
     >
       <span className="label">{label}</span>

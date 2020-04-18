@@ -33,6 +33,10 @@ export const getStyledButton = ({
     .label {
       background: ${isDarkMode ? darkColor : lightColor};
     }
+
+    &: hover {
+      color: ${isDarkMode ? lightColor : darkColor};
+    }
   }
 `;
 };
