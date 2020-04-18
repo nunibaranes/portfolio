@@ -3,7 +3,7 @@ import { Route, Link, Switch, Redirect } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import { routes } from "./routes";
-import "../styles/animations/fade-in-animations.scss";
+import "../styles/animations/fade-animations.scss";
 
 export default function AppRouter() {
   return (
@@ -13,7 +13,7 @@ export default function AppRouter() {
           <CSSTransition
             key={location.key}
             timeout={500}
-            classNames="fade-page"
+            classNames="fade-in-left"
           >
             <Switch location={location}>
               {routes.map((route) => {
