@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Alignment } from "../../interfaces/common/ui";
+import { getStyledButton } from "./layout.styles";
 
 export interface IStyledWrapper {
   noPadding?: boolean;
@@ -100,6 +101,48 @@ export const StyledButton = styled("button")`
         border: 1px solid #bbb;
       `;
     }
+  }}
+`;
+
+export const StyledToggleButton = styled(StyledButton)`
+  ${({ isActive }: { isActive: boolean }) => {
+    return `
+    text-indent: -9999px;
+    min-width: 55px;
+    height: 30px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    position: relative;
+    
+    .label {
+      width: 20px;
+      height: 20px;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      position: absolute;
+      left: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: left 0.2s cubic-bezier(0.68, -0.55, 0.27, 01.55) 320ms;
+
+      ${
+        isActive
+          ? `
+            position: absolute;
+            left: 30px;
+          `
+          : ""
+      }
+
+    }
+    ${getStyledButton({ isDarkMode: isActive })}
+    `;
   }}
 `;
 

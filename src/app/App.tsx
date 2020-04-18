@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, ReactNode } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import Header from "./layout/header/Header";
@@ -6,14 +6,18 @@ import Main from "./layout/main/Main";
 import Footer from "./layout/footer/Footer";
 
 import "./styles/app.scss";
+import {
+  themeLabel,
+  ILabelToggle,
+} from "./components/common/toggle-button/ToggleButton";
 export interface ITheme {
   isDarkMode: boolean;
-  toggleLabel: string;
+  toggleLabel: ILabelToggle;
 }
 
 const initialTheme: ITheme = {
   isDarkMode: false,
-  toggleLabel: "Set Dark Mode",
+  toggleLabel: themeLabel.off,
 };
 
 interface IThemeOptions {

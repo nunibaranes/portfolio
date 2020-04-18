@@ -4,6 +4,7 @@ import {
   StyledLink,
   StyledSVGIcon,
   StyledButton,
+  StyledToggleButton,
 } from "./common.styles";
 
 export const getStyledButton = ({
@@ -14,7 +15,7 @@ export const getStyledButton = ({
   isDarkMode: boolean;
   lightColor?: string;
   darkColor?: string;
-}) => {
+}): string => {
   return `
   ${StyledButton} {
     border: 1px solid ${isDarkMode ? lightColor : darkColor};
@@ -23,6 +24,14 @@ export const getStyledButton = ({
     &:hover{
         color: ${isDarkMode ? darkColor : lightColor};
         background-color: ${isDarkMode ? lightColor : darkColor};
+    }
+  }
+
+  ${StyledToggleButton} {
+    background: ${isDarkMode ? lightColor : darkColor};
+    
+    .label {
+      background: ${isDarkMode ? darkColor : lightColor};
     }
   }
 `;
@@ -59,12 +68,20 @@ export const StyledMainContainer = styled("section")`
   position: relative;
   min-height: 100vh;
   padding: 50px 0;
+  transition: background-color 0.5s, color 0.5s;
+
   && {
-    ${(props: { isDarkMode?: boolean }) => {
-      const { isDarkMode } = props;
+    ${(props: {
+      isDarkMode?: boolean;
+      darkColor?: string;
+      lightColor?: string;
+    }) => {
+      const { isDarkMode, darkColor = "black", lightColor = "white" } = props;
+
       return `
-        background-color: ${isDarkMode ? "black" : "white"};
-        color: ${isDarkMode ? "white" : "black"};
+        background-color: ${isDarkMode ? darkColor : lightColor};
+        color: ${isDarkMode ? lightColor : darkColor};
+        
 
         ${getStyledButton({ isDarkMode })}
     `;
