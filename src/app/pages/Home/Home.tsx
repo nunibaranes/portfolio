@@ -49,9 +49,10 @@ export default function Home() {
         <article className="paragraph-wrapper">
           <p>
             I am 30 years old, living in Tel-Aviv, Israel <br />
-            I wanted to introduce my self in a sightly different way <br />
+            I wanted to introduce my self in a sightly different way...
+            <br />
             We are going to play little game in which each level exposes <br />a
-            piece of information about me
+            piece of information about me.
           </p>
         </article>
         <Link className="start-btn" to={RESUME.path}>
