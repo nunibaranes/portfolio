@@ -3,10 +3,8 @@ import randomColor from "randomcolor";
 import Name from "../name/Name";
 import ColorPicker from "../color-picker/ColorPicker";
 
-import {
-  StyledWrapper,
-  StyledButton,
-} from "../../../styles/common/common.styles";
+import { StyledButton } from "../../../styles/common/ui.styles";
+import { StyledWrapper } from "../../../styles/common/layout.styles";
 import { StyledColorsWrapper } from "../paint.styles";
 
 const Settings = (props: {

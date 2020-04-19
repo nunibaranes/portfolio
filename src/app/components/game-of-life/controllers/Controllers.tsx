@@ -3,7 +3,7 @@ import React, { memo } from "react";
 import Title from "../../common/title/Title";
 import { IControllersProps, IController } from "./Controller.interface";
 
-import { StyledButton } from "../../../styles/common/common.styles";
+import { StyledButton } from "../../../styles/common/ui.styles";
 import {
   StyledControllers,
   StyledControllersActions,

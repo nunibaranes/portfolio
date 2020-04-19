@@ -14,11 +14,12 @@ import { Alignment } from "../../interfaces/common/ui";
 // custom hooks
 import useGameOfLife from "./hooks/useGameOfLife";
 import useTimer from "../../hooks/useTimer";
-
-import { StyledWrapper, StyledButton } from "../../styles/common/common.styles";
 import { StyledControllersAndSettings } from "./gameOfLife-styles";
 import { IController } from "./controllers/Controller.interface";
 import { generateBoard, cloneBoard } from "../common/board/boardUtils";
+
+import { StyledButton } from "../../styles/common/ui.styles";
+import { StyledWrapper } from "../../styles/common/layout.styles";
 
 const initialBoardData: IBoardData = {
   rows: 40,

@@ -1,13 +1,13 @@
-import styled from 'styled-components';
-import { StyledButton } from "../../styles/common/common.styles";
+import styled from "styled-components";
+import { StyledButton } from "../../styles/common/ui.styles";
 
-export const StyledColorsWrapper = styled('div')`
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-top: 10px;
+export const StyledColorsWrapper = styled("div")`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
 
-    ${StyledButton} {
-        align-self: center;
-    }
+  ${StyledButton} {
+    align-self: center;
+  }
 `;

@@ -1,47 +1,73 @@
 import styled from "styled-components";
 
-import {
-  StyledWrapper,
-  StyledLink,
-  StyledButton,
-  StyledToggleButton,
-  StyledSVGWrapper,
-} from "./common.styles";
+import { StyledLink, StyledSVGWrapper } from "./common.styles";
+import { getStyledButton } from "./utils.styles";
 
-// TODO: move to ui
-export const getStyledButton = ({
-  isDarkMode,
-  lightColor = "white",
-  darkColor = "black",
-}: {
-  isDarkMode: boolean;
-  lightColor?: string;
-  darkColor?: string;
-}): string => {
-  return `
-  ${StyledButton} {
-    border: 1px solid ${isDarkMode ? lightColor : darkColor};
-    color: ${isDarkMode ? lightColor : darkColor};
+export interface IStyledWrapper {
+  noPadding?: boolean;
+  withBorder?: boolean;
+  withCustomBorder?: string;
+  withBorderTop?: boolean;
+  withCustomBorderTop?: string;
+  withBorderBottom?: boolean;
+  withCustomBorderBottom?: string;
+  alignItems?: string;
+  flexDirection?: string;
+  margin?: string;
+}
 
-    &:hover{
-        color: ${isDarkMode ? darkColor : lightColor};
-        background-color: ${isDarkMode ? lightColor : darkColor};
-    }
-  }
+export const StyledWrapper = styled("section")`
+  ${(props: IStyledWrapper) => {
+    const {
+      noPadding,
+      withBorder,
+      withCustomBorder,
+      withBorderTop,
+      withCustomBorderTop,
+      withBorderBottom,
+      withCustomBorderBottom,
+      alignItems,
+      flexDirection,
+      margin,
+    } = props;
 
-  ${StyledToggleButton} {
-    background: ${isDarkMode ? lightColor : darkColor};
-    
-    .label {
-      background: ${isDarkMode ? darkColor : lightColor};
-    }
+    const defaultBorder = "1px solid #ccc";
 
-    &: hover {
-      color: ${isDarkMode ? lightColor : darkColor};
-    }
-  }
+    return `  
+      position: relative;
+      display: flex;
+      width: 100%;
+      max-width: 980px;
+      margin: ${margin || "0 auto 20px"};
+      flex-direction: ${flexDirection || "column"};
+      padding: ${noPadding ? 0 : "20px"};
+      border: ${
+        withBorder || withCustomBorder
+          ? withCustomBorder || defaultBorder
+          : "none"
+      };
+      border-top: ${
+        withBorderTop || withCustomBorderTop
+          ? withCustomBorderTop || defaultBorder
+          : ""
+      };
+      border-bottom: ${
+        withBorderBottom || withCustomBorderBottom
+          ? withCustomBorderBottom || defaultBorder
+          : ""
+      };
+      align-items: ${alignItems || ""};
+
+      &.animated-page {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+      }
+    `;
+  }}
 `;
-};
 
 export const StyledHeader = styled("header")`
   position: fixed;

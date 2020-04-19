@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { StyledButton } from "../../../styles/common/common.styles";
+import { StyledButton } from "../../../styles/common/ui.styles";
 
 export const StyledPopup = styled("div")`
   ${(props: { isInnerPopup?: boolean }) => {

@@ -2,7 +2,7 @@ import React from "react";
 
 import { IRoute } from "../../interfaces/common/router";
 import { routes, SKILLS } from "../../routers/routes";
-import { StyledWrapper } from "../../styles/common/common.styles";
+import { StyledWrapper } from "../../styles/common/layout.styles";
 
 export default function Skills() {
   const rootRoute: IRoute = routes.find(({ id }) => id === SKILLS.id);

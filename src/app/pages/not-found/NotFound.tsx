@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledWrapper } from "../../styles/common/common.styles";
+import { StyledWrapper } from "../../styles/common/layout.styles";
 import { useLocation } from "react-router-dom";
 
 export default function NotFound() {

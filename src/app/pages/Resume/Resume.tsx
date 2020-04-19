@@ -2,7 +2,7 @@ import React from "react";
 
 import { IRoute } from "../../interfaces/common/router";
 import { routes, RESUME } from "../../routers/routes";
-import { StyledWrapper } from "../../styles/common/common.styles";
+import { StyledWrapper } from "../../styles/common/layout.styles";
 
 export default function Resume() {
   const rootRoute: IRoute = routes.find(({ id }) => id === RESUME.id);

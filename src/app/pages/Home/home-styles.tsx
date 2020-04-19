@@ -1,9 +1,7 @@
 import styled from "styled-components";
-import {
-  StyledWrapper,
-  StyledSVGWrapper,
-  StyledButton,
-} from "../../styles/common/common.styles";
+import { StyledSVGWrapper } from "../../styles/common/common.styles";
+import { StyledButton } from "../../styles/common/ui.styles";
+import { StyledWrapper } from "../../styles/common/layout.styles";
 
 // preparations for styling home page
 export const StyledHomeWrapper = styled(StyledWrapper)`

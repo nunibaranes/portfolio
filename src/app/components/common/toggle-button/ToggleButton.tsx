@@ -2,7 +2,7 @@ import React, { useState, ReactNode } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
 
-import { StyledToggleButton } from "../../../styles/common/common.styles";
+import { StyledToggleButton } from "../../../styles/common/ui.styles";
 
 export type ILabelToggle = string | ReactNode;
 

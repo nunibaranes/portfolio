@@ -1,11 +1,11 @@
 import React from "react";
 
+import { StyledButton } from "../../../styles/common/ui.styles";
 import {
   IStyledWrapper,
   StyledWrapper,
-  StyledButton,
-} from "../../../styles/common/common.styles";
-import { StyledNav } from "../../../styles/ui/ui.styles";
+} from "../../../styles/common/layout.styles";
+import { StyledNav } from "../../../styles/common/ui.styles";
 import { Link } from "react-router-dom";
 import { IMenuItem, MenuType } from "../../../interfaces/common/ui";
 import { IRoute } from "../../../interfaces/common/router";

@@ -1,7 +1,7 @@
 import React from "react";
 
-import { StyledFooter } from "../../styles/common/layout.styles";
-import { StyledWrapper, StyledLink } from "../../styles/common/common.styles";
+import { StyledFooter, StyledWrapper } from "../../styles/common/layout.styles";
+import { StyledLink } from "../../styles/common/common.styles";
 import { GithubIcon, EmailIcon } from "../../components/common/svg/icons";
 
 type email = string;

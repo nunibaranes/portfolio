@@ -3,6 +3,10 @@ import styled from "styled-components";
 
 import { IStyledSVGWrapper } from "../../../interfaces/common/ui";
 import { StyledSVGWrapper } from "../../../styles/common/common.styles";
+import {
+  getFadeInFromLeftAnimation,
+  getChildWithColors,
+} from "../../../styles/common/utils.styles";
 
 export const ShapeMorph = (props: IStyledSVGWrapper) => {
   const [loadedClass, setLoadedClass] = useState("");
@@ -77,8 +81,8 @@ const StyledShapeMorph = styled(StyledSVGWrapper)`
         transform: scale(2);
       }
 
-      ${() => {
-        const colors = [
+      ${getChildWithColors({
+        colors: [
           "#909090",
           "#cecece",
           "#b7b7b7",
@@ -86,28 +90,12 @@ const StyledShapeMorph = styled(StyledSVGWrapper)`
           "#8e8e8e",
           "#8e8e8e",
           "#8e8e8e",
-        ];
-        let nthStyles = "";
-        colors.forEach((color, index) => {
-          nthStyles += ` &:nth-child(7n + ${index + 1}) {
-              fill: ${color};
-              animation-delay: 0.${colors.length - index}s;
-            }`;
-        });
+        ],
+        property: "fill",
+        addAnimationDelay: true,
+      })}
+    }
 
-        return nthStyles;
-      }}
-    }
-  }
-
-  @keyframes slideInFromLeft {
-    0% {
-      transform: translateX(-1000%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateX(0);
-      opacity: 0.2;
-    }
+    ${getFadeInFromLeftAnimation()}
   }
 `;

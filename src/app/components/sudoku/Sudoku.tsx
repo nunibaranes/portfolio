@@ -9,7 +9,7 @@ import { generateBoard, cloneBoard } from "../common/board/boardUtils";
 import { ICell } from "../common/board/cell/Cell.interface";
 import { Alignment } from "../../interfaces/common/ui";
 import { BoardType, IBoardData } from "../common/board/Board.interface";
-import { StyledWrapper } from "../../styles/common/common.styles";
+import { StyledWrapper } from "../../styles/common/layout.styles";
 import {
   StyledSudokuFillOptions,
   StyledSudokuFillSingleOption,

@@ -10,7 +10,7 @@ import Sudoku from "../../components/sudoku/Sudoku";
 import Paint from "../../components/paint/Paint";
 import { IMenuItem, MenuType } from "../../interfaces/common/ui";
 import { Menu } from "../../components/common/menu/Menu";
-import { StyledWrapper } from "../../styles/common/common.styles";
+import { StyledWrapper } from "../../styles/common/layout.styles";
 import "../../styles/animations/zoom-animations.scss";
 
 export const GAME_OF_LIFE: IMenuItem = {

@@ -4,10 +4,8 @@ import Logo from "../../components/common/svg/logo";
 import { ShapeMorph } from "../../components/common/svg/shape-morph";
 
 import { RESUME } from "../../routers/routes";
-import {
-  StyledButton,
-  StyledSVGWrapper,
-} from "../../styles/common/common.styles";
+import { StyledSVGWrapper } from "../../styles/common/common.styles";
+import { StyledButton } from "../../styles/common/ui.styles";
 import { StyledHomeWrapper } from "./home-styles";
 
 /**

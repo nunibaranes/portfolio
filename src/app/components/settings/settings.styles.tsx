@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { StyledButton } from "../../styles/common/common.styles";
-import { getStyledButton } from "../../styles/common/layout.styles";
+import { StyledButton } from "../../styles/common/ui.styles";
+import { getStyledButton } from "../../styles/common/utils.styles";
 import { ITheme } from "../../App";
 
 export const StyledSettings = styled("div")`
