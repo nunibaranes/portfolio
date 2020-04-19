@@ -28,18 +28,21 @@ export const StyledHomeWrapper = styled(StyledWrapper)`
     }
 
     &.second {
+      pointer-events: none;
+
       .paragraph-wrapper {
         max-width: 550px;
         font-size: 30px;
         text-align: left;
-        pointer-events: none;
       }
+
       .start-btn {
         ${StyledButton} {
           min-width: 125px;
           height: 50px;
           font-size: 25px;
           border-radius: 30px;
+          pointer-events: all;
         }
       }
     }
