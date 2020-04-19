@@ -1,16 +1,22 @@
-import React, { useRef } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { IStyledSVGWrapper } from "../../../interfaces/common/ui";
 import { StyledSVGWrapper } from "../../../styles/common/common.styles";
 
 export const ShapeMorph = (props: IStyledSVGWrapper) => {
-  const morphRef = useRef(null);
+  const [loadedClass, setLoadedClass] = useState("");
 
+  useEffect(() => {
+    setLoadedClass("loaded");
+
+    setTimeout(() => {
+      setLoadedClass("");
+    }, 3000);
+  }, []);
   return (
     <StyledShapeMorph
-      ref={morphRef}
-      className="morph-wrapper"
+      className={`morph-wrapper ${loadedClass}`}
       viewBox="0 200 1500 200"
       {...props}
     >
@@ -52,43 +58,58 @@ const StyledShapeMorph = styled(StyledSVGWrapper)`
   bottom: 0;
   z-index: 0;
 
+  &.loaded {
+    g path {
+      animation: 0.5s ease-out 0s 1 slideInFromLeft;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      animation-play-state: running;
+    }
+  }
   g {
     stroke: transparent;
     stroke-width: 0;
 
     path {
-      transition: transform 2.5s;
-      transition-delay: 0.2s;
-      transform: scale(1);
       opacity: 0.2;
+      transform: translateX(0);
+      transition: transform 2.5s ease-in-out, opacity 0.3s;
 
       &:hover {
         transform: scale(2);
       }
 
-      &:nth-child(6n + 1) {
-        fill: #b5b3b3;
-      }
+      ${() => {
+        const colors = [
+          "#909090",
+          "#cecece",
+          "#b7b7b7",
+          "#969696",
+          "#8e8e8e",
+          "#8e8e8e",
+          "#8e8e8e",
+        ];
+        let nthStyles = "";
+        colors.forEach((color, index) => {
+          nthStyles += ` &:nth-child(7n + ${index + 1}) {
+              fill: ${color};
+              animation-delay: 0.${colors.length - index}s;
+            }`;
+        });
 
-      &:nth-child(6n + 2) {
-        fill: #cecece;
-      }
+        return nthStyles;
+      }}
+    }
+  }
 
-      &:nth-child(6n + 3) {
-        fill: #b7b7b7;
-      }
-
-      &:nth-child(6n + 4) {
-        fill: #969696;
-      }
-
-      &:nth-child(6n + 5) {
-        fill: #8e8e8e;
-      }
-
-      &:nth-child(6n + 6) {
-        fill: #828282;
-      }
+  @keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-1000%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 0.2;
     }
   }
 `;
