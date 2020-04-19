@@ -69,6 +69,10 @@ export const StyledHeader = styled("header")`
         margin-block-start: 0;
         color: ${isDarkMode ? "white" : "black"};
         cursor: auto;
+
+        &.home{
+          visibility: hidden;
+        }
         
         &:not(.home) {
           cursor: pointer;

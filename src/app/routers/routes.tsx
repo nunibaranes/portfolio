@@ -1,5 +1,3 @@
-import React from "react";
-
 import { IRoute } from "../interfaces/common/router";
 
 import Home from "../pages/home/Home";

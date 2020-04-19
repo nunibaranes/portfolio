@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {
   StyledWrapper,
   StyledSVGWrapper,
+  StyledButton,
 } from "../../styles/common/common.styles";
 
 // preparations for styling home page
@@ -13,16 +14,36 @@ export const StyledHomeWrapper = styled(StyledWrapper)`
   max-width: 100%;
 
   .half {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-grow: 1;
+    z-index: 1;
 
     &.first {
+      pointer-events: none;
+      h1 {
+        font-size: 50px;
+      }
     }
 
     &.second {
+      .paragraph-wrapper {
+        max-width: 550px;
+        font-size: 30px;
+        text-align: left;
+        pointer-events: none;
+      }
+      .start-btn {
+        ${StyledButton} {
+          min-width: 125px;
+          height: 50px;
+          font-size: 25px;
+          border-radius: 30px;
+        }
+      }
     }
   }
 
@@ -31,6 +52,15 @@ export const StyledHomeWrapper = styled(StyledWrapper)`
       g {
         stroke: currentColor;
       }
+    }
+
+    &.morph-wrapper {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: -10px;
+      bottom: 0;
+      z-index: 0;
     }
   }
 `;

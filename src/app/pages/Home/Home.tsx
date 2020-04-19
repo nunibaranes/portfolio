@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../components/common/svg/logo";
+import { ShapeMorph } from "../../components/common/svg/shape-morph";
+
+import { RESUME } from "../../routers/routes";
 import {
   StyledButton,
   StyledSVGWrapper,
 } from "../../styles/common/common.styles";
-import { RESUME } from "../../routers/routes";
 import { StyledHomeWrapper } from "./home-styles";
 
 /**
@@ -31,6 +33,7 @@ import { StyledHomeWrapper } from "./home-styles";
 export default function Home() {
   return (
     <StyledHomeWrapper className="animated-page home" alignItems="center">
+      <ShapeMorph width="100%" height="100%" />
       <div className="first half">
         <StyledSVGWrapper
           className="noonles"
@@ -51,7 +54,7 @@ export default function Home() {
             piece of information about me
           </p>
         </article>
-        <Link to={RESUME.path}>
+        <Link className="start-btn" to={RESUME.path}>
           <StyledButton type="button">Start</StyledButton>
         </Link>
       </div>

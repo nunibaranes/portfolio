@@ -63,7 +63,7 @@ export const StyledWrapper = styled("section")`
         top: 0;
         right: 0;
         left: 0;
-        height: 100%;
+        bottom: 0;
       }
     `;
   }}

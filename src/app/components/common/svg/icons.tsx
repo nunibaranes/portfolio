@@ -1,6 +1,6 @@
-import { StyledSVGWrapper } from "../../../styles/common/common.styles";
 import React from "react";
 import { IStyledSVGWrapper } from "../../../interfaces/common/ui";
+import { StyledSVGWrapper } from "../../../styles/common/common.styles";
 
 export const GithubIcon = (props: IStyledSVGWrapper) => (
   <StyledSVGWrapper {...props}>
