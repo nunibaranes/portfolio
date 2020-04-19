@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../components/common/svg/logo";
 import { ShapeMorph } from "../../components/common/svg/shape-morph";
+import { routesNavigation } from "../../routers/routes";
 
-import { RESUME } from "../../routers/routes";
 import { StyledSVGWrapper } from "../../styles/common/common.styles";
 import { StyledButton } from "../../styles/common/ui.styles";
 import { StyledHomeWrapper } from "./home-styles";
@@ -29,6 +29,7 @@ import { StyledHomeWrapper } from "./home-styles";
  **/
 
 export default function Home() {
+  const currentPage = routesNavigation[0];
   return (
     <StyledHomeWrapper className="animated-page home" alignItems="center">
       <ShapeMorph width="100%" height="100%" />
@@ -53,7 +54,7 @@ export default function Home() {
             piece of information about me.
           </p>
         </article>
-        <Link className="start-btn" to={RESUME.path}>
+        <Link className="start-btn" to={currentPage.path}>
           <StyledButton type="button">Start</StyledButton>
         </Link>
       </div>

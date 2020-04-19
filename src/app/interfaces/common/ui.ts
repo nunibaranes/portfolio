@@ -24,7 +24,8 @@ export enum MenuType {
 export interface IMenuItem {
   id: string;
   title?: string;
-  isActive?: boolean;
+  isActive?: boolean; // current page/item
+  isVisible?: boolean; // controls visibility in navigation
   hidden?: boolean;
   disabled?: boolean;
   children?: JSX.Element;

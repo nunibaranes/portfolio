@@ -1,7 +1,8 @@
-import React, { useState, createContext, ReactNode } from "react";
+import React, { useState, createContext } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import Header from "./layout/header/Header";
+import PageNavigation from "./layout/page-navigation/PageNavigation";
 import Main from "./layout/main/Main";
 import Footer from "./layout/footer/Footer";
 
@@ -36,6 +37,7 @@ export default function App() {
     <Router>
       <ThemeContext.Provider value={themeOptions}>
         <Header></Header>
+        <PageNavigation></PageNavigation>
         <Main></Main>
       </ThemeContext.Provider>
       <Footer></Footer>

@@ -37,15 +37,27 @@ export const StyledButton = styled("button")`
     background-color: #000;
   }
 
-  ${(props) => {
-    if (props.disabled) {
-      return `    
+  ${(props: { disabled?: boolean; isActive?: boolean; hidden?: boolean }) => {
+    const disabledStyles = props.disabled
+      ? `    
         cursor: default;
         pointer-events: none;
         opacity: 0.5;
         border: 1px solid #bbb;
-      `;
-    }
+      `
+      : "";
+
+    const activeStyles = props.isActive
+      ? `    
+        color: #fff;
+        background-color: #000;
+      `
+      : "";
+
+    return `
+      ${disabledStyles}
+      ${activeStyles}
+    `;
   }}
 `;
 

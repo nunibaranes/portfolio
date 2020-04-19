@@ -88,6 +88,8 @@ export const StyledHeader = styled("header")`
     const { isDarkMode } = props;
     return `
       .logo {
+        opacity: 1;
+        visibility: visible;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -95,8 +97,10 @@ export const StyledHeader = styled("header")`
         margin-block-start: 0;
         color: ${isDarkMode ? "white" : "black"};
         cursor: auto;
+        transition: opacity 0.5s;
 
         &.home{
+          opacity: 0;
           visibility: hidden;
         }
         
@@ -124,7 +128,7 @@ export const StyledHeader = styled("header")`
         .label {
           visibility: hidden;
           opacity: 0;
-          transition: opacity 0.3s;
+          transition: opacity 0.5s;
         }
       }
     `;
@@ -148,7 +152,6 @@ export const StyledMainContainer = styled("section")`
       return `
         background-color: ${isDarkMode ? darkColor : lightColor};
         color: ${isDarkMode ? lightColor : darkColor};
-        
 
         ${getStyledButton({ isDarkMode })}
     `;

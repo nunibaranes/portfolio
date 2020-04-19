@@ -76,6 +76,7 @@ const StyledShapeMorph = styled(StyledSVGWrapper)`
       opacity: 0.2;
       transform: translateX(0);
       transition: transform 2.5s ease-in-out, opacity 0.3s;
+      transition-delay: 0.3s;
 
       &:hover {
         transform: scale(2);

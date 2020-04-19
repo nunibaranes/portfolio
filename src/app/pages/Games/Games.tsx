@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo, memo } from "react";
 import { GAMES } from "../../routers/routes";
 import { Link } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
@@ -9,13 +9,14 @@ import GameOfLife from "../../components/game-of-life/GameOfLife";
 import Sudoku from "../../components/sudoku/Sudoku";
 import Paint from "../../components/paint/Paint";
 import { IMenuItem, MenuType } from "../../interfaces/common/ui";
-import { Menu } from "../../components/common/menu/Menu";
+import Menu from "../../components/common/menu/Menu";
 import { StyledWrapper } from "../../styles/common/layout.styles";
 import "../../styles/animations/zoom-animations.scss";
 
 export const GAME_OF_LIFE: IMenuItem = {
   id: "game-of-life",
   title: "Game Of Life",
+  isActive: true,
   children: <GameOfLife />,
 };
 
@@ -31,9 +32,11 @@ export const PAINT: IMenuItem = {
   children: <Paint />,
 };
 
-export default function Games() {
+const gamesOptions: IMenuItem[] = [GAME_OF_LIFE, SUDOKU, PAINT];
+
+export default memo(function Games() {
   const gamesRoute = findRouteById(GAMES.id);
-  const games: IMenuItem[] = [GAME_OF_LIFE, SUDOKU, PAINT];
+  const [games, setGames] = useState(gamesOptions);
   const [activeGameId, setActiveGameId] = useState(GAME_OF_LIFE.id);
 
   const activeItemChanged = (id: string) => {
@@ -46,21 +49,23 @@ export default function Games() {
         <h2>{gamesRoute.title}</h2>
       </Link>
       <Menu
+        className="games-navigation"
         items={games}
         type={MenuType.Default}
         activeItemChanged={activeItemChanged}
       />
       <TransitionGroup className="games">
         <CSSTransition key={activeGameId} timeout={500} classNames="zoom">
-          <Game gameId={activeGameId} games={games} />
+          <Game gameId={activeGameId} />
         </CSSTransition>
       </TransitionGroup>
     </StyledWrapper>
   );
-}
+});
 
-function Game({ gameId, games }: { gameId: string; games: IMenuItem[] }) {
-  const getGameById = (id: string) => games.find((game) => game.id === id);
+function Game({ gameId }: { gameId: string }) {
+  const getGameById = (id: string) =>
+    gamesOptions.find((game) => game.id === id);
 
   let game: IMenuItem = getGameById(gameId);
 

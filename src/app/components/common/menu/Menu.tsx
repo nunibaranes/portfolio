@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, memo } from "react";
 
 import { StyledButton } from "../../../styles/common/ui.styles";
 import {
@@ -6,7 +6,7 @@ import {
   StyledWrapper,
 } from "../../../styles/common/layout.styles";
 import { StyledNav } from "../../../styles/common/ui.styles";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { IMenuItem, MenuType } from "../../../interfaces/common/ui";
 import { IRoute } from "../../../interfaces/common/router";
 
@@ -14,60 +14,122 @@ type Item = IMenuItem | IRoute;
 
 type MenuProps = {
   items: Item[];
+  className?: string;
   wrapperStyles?: IStyledWrapper;
   type?: MenuType;
   activeItemChanged?: (id: string) => void;
 };
 
-export function Menu(props: MenuProps) {
+export const cloneItems = (items: Item[]) => JSON.parse(JSON.stringify(items));
+
+export function parseIsActiveByIdOrPath<T extends IRoute>({
+  items,
+  targetValue,
+  searchById = false,
+}: {
+  items: T[];
+  targetValue: string;
+  searchById?: boolean;
+}): T[] {
+  const copiedItems = cloneItems(items);
+  return copiedItems.map((item: T) => {
+    return {
+      ...item,
+      isActive: searchById
+        ? item.id === targetValue
+        : item.path === targetValue,
+    };
+  });
+}
+
+export default memo(function Menu(props: MenuProps) {
   const defaultStyles = {
     alignItems: "center",
   };
   const {
+    className = "",
     items,
     wrapperStyles = defaultStyles,
     type = MenuType.Default,
     activeItemChanged = () => {},
   } = props;
+  const { pathname } = useLocation();
+
+  const parseItemsById = (items: Item[], id: string) =>
+    parseIsActiveByIdOrPath({
+      items,
+      targetValue: id,
+      searchById: true,
+    });
+
+  const [itemsState, setItemsState] = useState(items);
+
+  const handleOnClickItem = (itemId: string) => {
+    activeItemChanged(itemId);
+    const updatedItems = parseItemsById(itemsState, itemId);
+    setItemsState(updatedItems);
+  };
+
+  useEffect(() => {
+    if (type === MenuType.Route) {
+      const updatedItems = parseIsActiveByIdOrPath({
+        items,
+        targetValue: pathname,
+      });
+      setItemsState(updatedItems);
+    } else {
+      const updatedItems = parseItemsById(items, items[0].id);
+      setItemsState(updatedItems);
+    }
+  }, []);
 
   return (
-    <StyledWrapper {...wrapperStyles}>
+    <StyledWrapper className={`menu ${className}`} {...wrapperStyles}>
       <StyledNav>
-        {items.map((item) => {
-          return type === "default" ? (
+        {itemsState.map((item: Item) => {
+          return (
             <MenuItem
               key={`${type}-${item.id}`}
               item={item}
-              onClickItem={activeItemChanged}
+              type={type}
+              onClickItem={handleOnClickItem}
             />
-          ) : (
-            <RouteMenuItem key={`${type}-${item.id}`} {...item} />
           );
         })}
       </StyledNav>
     </StyledWrapper>
   );
-}
+});
 
-function MenuItem(props: {
-  item: IMenuItem;
+function MenuItem<T extends IRoute>(props: {
+  item: T;
+  type: MenuType;
   onClickItem: (id: string) => void;
 }) {
-  const { item, onClickItem } = props;
-  return (
-    <li>
-      <StyledButton onClick={() => onClickItem(item.id)}>
-        {item.title}
-      </StyledButton>
-    </li>
-  );
-}
+  let history = useHistory();
 
-function RouteMenuItem(item: IRoute) {
-  const { title, path } = item;
+  const {
+    item: { title, path, id, isActive },
+    onClickItem,
+    type,
+  } = props;
+  const activeClass = isActive ? "active" : "";
+  const handleClick = () => {
+    onClickItem(id);
+    if (type === MenuType.Route && path) {
+      history.push(path);
+    }
+  };
+
   return (
-    <li>
-      <Link to={`${path}`}>{title}</Link>
+    <li className="nav-item">
+      <StyledButton
+        className={activeClass}
+        isActive={isActive}
+        onClick={handleClick}
+      >
+        <span className="label">{title}</span>
+      </StyledButton>
     </li>
   );
 }

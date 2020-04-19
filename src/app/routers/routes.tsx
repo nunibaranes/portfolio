@@ -14,6 +14,7 @@ export const HOME: IRoute = {
   path: "/",
   exact: true,
   component: Home,
+  hidden: true,
 };
 
 export const RESUME: IRoute = {
@@ -61,6 +62,7 @@ export const GAMES: IRoute = {
   title: "Games",
   path: "/games",
   component: Games,
+  hidden: true,
 };
 
 export const NOT_FOUND: IRoute = {
@@ -68,6 +70,7 @@ export const NOT_FOUND: IRoute = {
   title: "Not Found 404",
   path: "/404",
   component: NotFound,
+  hidden: true,
 };
 
 export const routes: IRoute[] = [
@@ -80,3 +83,5 @@ export const routes: IRoute[] = [
   GAMES,
   NOT_FOUND,
 ];
+
+export const routesNavigation = routes.filter((route) => !route.hidden);

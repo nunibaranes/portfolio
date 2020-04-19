@@ -8,12 +8,13 @@ import { Link, useLocation } from "react-router-dom";
 import { themeLabel } from "../../components/common/toggle-button/ToggleButton";
 import { StyledSVGWrapper } from "../../styles/common/common.styles";
 import Logo from "../../components/common/svg/logo";
-import { HOME } from "../../routers/routes";
+import { routes } from "../../routers/routes";
 
 export default function Header() {
   const { pathname } = useLocation();
   const { theme, setTheme } = useContext(ThemeContext);
-  const isHomePage = pathname === HOME.path;
+  const pageId = routes.find((route) => route.path === pathname).id;
+
   const logo = (
     <>
       <StyledSVGWrapper height="50px" width="50px" strokeWidth="8px">
@@ -33,13 +34,9 @@ export default function Header() {
 
   return (
     <StyledHeader className="header" isDarkMode={theme.isDarkMode}>
-      {isHomePage ? (
-        <span className="logo home">{logo}</span>
-      ) : (
-        <Link className="logo" to="/">
-          {logo}
-        </Link>
-      )}
+      <Link className={`logo ${pageId}`} to="/">
+        {logo}
+      </Link>
       <Settings theme={theme} toggleDarkMode={toggleDarkMode} />
     </StyledHeader>
   );

@@ -15,7 +15,7 @@ export const getStyledButton = ({
       border: 1px solid ${isDarkMode ? lightColor : darkColor};
       color: ${isDarkMode ? lightColor : darkColor};
   
-      &:hover{
+      &:hover, &.active {
           color: ${isDarkMode ? darkColor : lightColor};
           background-color: ${isDarkMode ? lightColor : darkColor};
       }
