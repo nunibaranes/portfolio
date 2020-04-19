@@ -7,6 +7,7 @@ import { ThemeContext } from "../../App";
 
 export default function Main() {
   const { theme } = useContext(ThemeContext);
+
   return (
     <StyledMainContainer
       className="main"

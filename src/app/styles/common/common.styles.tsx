@@ -152,7 +152,7 @@ export const StyledToggleButton = styled(StyledButton)`
   }}
 `;
 
-export const StyledSVGWrapper = styled("svg")`
+export const StyledSVGWrapper = styled("div")`
   ${(props: IStyledSVGWrapper) => {
     const {
       stroke = "#000",
