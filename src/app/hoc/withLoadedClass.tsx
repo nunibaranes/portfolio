@@ -8,16 +8,16 @@ export default function withLoadedClass<P extends object>(
   Component: ComponentType<P>
 ): ComponentType<P & { loadedClass?: string }> {
   return function WithLoadedClass(props: P) {
-    const [loadedClass, setLoadedClass] = useState("");
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-      setLoadedClass("loaded");
+      setIsLoaded(true);
 
-      setTimeout(() => {
-        setLoadedClass("");
-      }, 3000);
+      return () => {
+        setIsLoaded(false);
+      };
     }, []);
 
-    return <Component loadedClass={loadedClass} {...(props as P)} />;
+    return <Component isLoaded={isLoaded} {...(props as P)} />;
   };
 }

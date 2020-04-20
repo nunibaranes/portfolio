@@ -9,7 +9,7 @@ import {
 } from "../../../styles/common/utils.styles";
 import withLoadedClass from "../../../hoc/withLoadedClass";
 interface IStyledSVGWrapperLoaded extends IStyledShapeMorph {
-  loadedClass?: string;
+  isLoaded?: boolean;
 }
 
 interface IStyledShapeMorph extends IStyledSVGWrapper {
@@ -19,8 +19,18 @@ interface IStyledShapeMorph extends IStyledSVGWrapper {
 export default withLoadedClass(function ShapeMorph(
   props: IStyledSVGWrapperLoaded
 ) {
-  const { loadedClass = "" } = props;
+  const { isLoaded } = props;
+  const [loadedClass, setLoadedClass] = useState("");
 
+  useEffect(() => {
+    if (isLoaded) {
+      setLoadedClass("loaded");
+
+      setTimeout(() => {
+        setLoadedClass("");
+      }, 2000);
+    }
+  }, [isLoaded]);
   return (
     <StyledShapeMorph
       className={`morph-wrapper ${loadedClass}`}
