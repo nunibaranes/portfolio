@@ -37,7 +37,7 @@ export default function App() {
     <Router>
       <ThemeContext.Provider value={themeOptions}>
         <Header></Header>
-        <PageNavigation></PageNavigation>
+        {/* <PageNavigation /> */}
         <Main></Main>
       </ThemeContext.Provider>
       <Footer></Footer>

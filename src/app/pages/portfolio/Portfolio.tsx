@@ -15,6 +15,7 @@ export default withQuizOverlay({
     return (
       <StyledWrapper className={`page ${PORTFOLIO_ID}`}>
         <h2>{rootRoute.title}</h2>
+        <h3>Thank you</h3>
       </StyledWrapper>
     );
   },

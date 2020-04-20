@@ -9,7 +9,7 @@ export default function AppRouter() {
   return (
     <Route
       render={({ location }) => (
-        <TransitionGroup className="pages">
+        <TransitionGroup className="page-transition-group">
           <CSSTransition
             key={location.key}
             timeout={500}

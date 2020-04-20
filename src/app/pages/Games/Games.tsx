@@ -54,7 +54,7 @@ export default memo(function Games() {
         type={MenuType.Default}
         activeItemChanged={activeItemChanged}
       />
-      <TransitionGroup className="games">
+      <TransitionGroup className="game">
         <CSSTransition key={activeGameId} timeout={500} classNames="zoom">
           <Game gameId={activeGameId} />
         </CSSTransition>

@@ -6,76 +6,28 @@ import {
   SKILLS_ID,
   PORTFOLIO_ID,
 } from "../../routers/constants";
-import { StyledButton } from "../../styles/common/ui.styles";
+import AboutQuizLevel from "../../pages/about/AboutQuizOverlay";
+import JobExperienceQuizLevel from "../../pages/job-experience/JobExperienceQuizLevel";
+import PortfolioQuizLevel from "../../pages/portfolio/PortfolioQuizOverlay";
+import SkillsQuizLevel from "../../pages/skills/SkillsQuizOverlay";
+import { StyledWrapper } from "../../styles/common/layout.styles";
 
 const quizzes = [
   {
     id: ABOUT_ID,
-    quizOverlay: ({ onQuizPass }: { onQuizPass: (to: boolean) => void }) => {
-      return (
-        <>
-          <h2>{ABOUT_ID} quiz</h2>
-          <StyledButton
-            onClick={() => {
-              onQuizPass(true);
-            }}
-          >
-            pass
-          </StyledButton>
-        </>
-      );
-    },
+    quizOverlay: AboutQuizLevel,
   },
   {
     id: JOB_EXPERIENCE_ID,
-    quizOverlay: ({ onQuizPass }: { onQuizPass: (to: boolean) => void }) => {
-      return (
-        <>
-          <h2>{JOB_EXPERIENCE_ID} quiz</h2>
-          <StyledButton
-            onClick={() => {
-              onQuizPass(true);
-            }}
-          >
-            pass
-          </StyledButton>
-        </>
-      );
-    },
+    quizOverlay: JobExperienceQuizLevel,
   },
   {
     id: SKILLS_ID,
-    quizOverlay: ({ onQuizPass }: { onQuizPass: (to: boolean) => void }) => {
-      return (
-        <>
-          <h2>{SKILLS_ID} quiz</h2>
-          <StyledButton
-            onClick={() => {
-              onQuizPass(true);
-            }}
-          >
-            pass
-          </StyledButton>
-        </>
-      );
-    },
+    quizOverlay: SkillsQuizLevel,
   },
   {
     id: PORTFOLIO_ID,
-    quizOverlay: ({ onQuizPass }: { onQuizPass: (to: boolean) => void }) => {
-      return (
-        <>
-          <h2>{PORTFOLIO_ID} quiz</h2>
-          <StyledButton
-            onClick={() => {
-              onQuizPass(true);
-            }}
-          >
-            pass
-          </StyledButton>
-        </>
-      );
-    },
+    quizOverlay: PortfolioQuizLevel,
   },
 ];
 
@@ -87,5 +39,9 @@ export function QuizOverlay({
   onQuizPass?: (to: boolean) => void;
 }): JSX.Element {
   const quiz = findEntityInArrayById(routeId, quizzes);
-  return quiz.quizOverlay({ onQuizPass: onQuizPass });
+  return (
+    <StyledWrapper className={`animated-screen ${routeId}-quiz-overlay`}>
+      {quiz.quizOverlay({ onQuizPass: onQuizPass })}
+    </StyledWrapper>
+  );
 }

@@ -6,6 +6,8 @@ import { StyledWrapper } from "../../styles/common/layout.styles";
 import { ABOUT_ID } from "../../routers/constants";
 import withQuizOverlay from "../../hoc/withQuizOverlay";
 import { findEntityInArrayById } from "../../utils/utils";
+import { StyledButton } from "../../styles/common/ui.styles";
+import { Link } from "react-router-dom";
 
 export default withQuizOverlay({
   routeId: ABOUT_ID,
@@ -15,6 +17,9 @@ export default withQuizOverlay({
     return (
       <StyledWrapper className={`page ${ABOUT_ID}`}>
         <h2>{rootRoute.title}</h2>
+        <Link to="/job-experience">
+          <StyledButton type="button">Next level</StyledButton>
+        </Link>
       </StyledWrapper>
     );
   },
