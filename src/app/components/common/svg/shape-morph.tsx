@@ -6,6 +6,7 @@ import { StyledSVGWrapper } from "../../../styles/common/common.styles";
 import {
   getFadeInFromLeftAnimation,
   getChildWithColors,
+  getScaleAndShrinkAnimation,
 } from "../../../styles/common/utils.styles";
 import withLoadedClass from "../../../hoc/withLoadedClass";
 import { createOneDimensionalArray } from "../../../utils/utils";
@@ -93,6 +94,7 @@ const StyledShapeMorph = styled(StyledSVGWrapper)`
       animation-play-state: running;
     }
   }
+
   svg g {
     stroke: transparent;
     stroke-width: 0;
@@ -100,8 +102,8 @@ const StyledShapeMorph = styled(StyledSVGWrapper)`
     path {
       opacity: 0.2;
       transform: translateX(0);
-      transition: transform 2.5s ease-in-out, opacity 0.3s;
-      transition-delay: 0.3s;
+      transform: scale(1);
+      transition: transform 3s;
 
       &:hover {
         transform: scale(2);

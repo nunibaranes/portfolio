@@ -71,6 +71,36 @@ export const getDashedAnimation = () => `
       stroke-dashoffset: 1000;
     }
   }
+  @-webkit-keyframes dash {
+    to {
+      stroke-dashoffset: 1000;
+    }
+  }
+`;
+
+export const getScaleAndShrinkAnimation = () => `
+  @keyframes scale {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @-webkit-keyframes scale {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 `;
 
 export const getChildWithColors = ({
