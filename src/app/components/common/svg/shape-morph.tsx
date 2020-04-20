@@ -8,6 +8,7 @@ import {
   getChildWithColors,
 } from "../../../styles/common/utils.styles";
 import withLoadedClass from "../../../hoc/withLoadedClass";
+import { createOneDimensionalArray } from "../../../utils/utils";
 interface IStyledSVGWrapperLoaded extends IStyledShapeMorph {
   isLoaded?: boolean;
 }
@@ -107,17 +108,7 @@ const StyledShapeMorph = styled(StyledSVGWrapper)`
       }
 
       ${(props: IStyledShapeMorph) => {
-        const {
-          colors = [
-            "#909090",
-            "#cecece",
-            "#b7b7b7",
-            "#969696",
-            "#8e8e8e",
-            "#8e8e8e",
-            "#8e8e8e",
-          ],
-        } = props;
+        const { colors = createOneDimensionalArray("#b7b7b7", 7) } = props;
         return getChildWithColors({
           colors,
           property: "fill",

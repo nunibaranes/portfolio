@@ -5,3 +5,10 @@ export const findEntityInArrayById = <T extends { id: string }>(
 
 export const cloneArray = <T>(array: T[]): T[] =>
   JSON.parse(JSON.stringify(array));
+
+export const createOneDimensionalArray = <T>(value: T, len: number): T[] => {
+  const temp = Array.from(Array(len));
+  return Array.from(temp, (i) => {
+    return value;
+  });
+};

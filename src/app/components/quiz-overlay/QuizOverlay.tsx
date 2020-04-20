@@ -1,5 +1,8 @@
 import React from "react";
-import { findEntityInArrayById } from "../../utils/utils";
+import {
+  findEntityInArrayById,
+  createOneDimensionalArray,
+} from "../../utils/utils";
 import {
   ABOUT_ID,
   JOB_EXPERIENCE_ID,
@@ -18,27 +21,22 @@ const quizzes = [
   {
     id: ABOUT_ID,
     quizOverlay: AboutQuizLevel,
-    colors: [
-      "#FFE772",
-      "#FFEC8E",
-      "#FFEFA3",
-      "#ffdd38",
-      "#ffd400",
-      "#ffd400",
-      "#ffd400",
-    ],
+    colors: createOneDimensionalArray("#ffd400", 7),
   },
   {
     id: JOB_EXPERIENCE_ID,
     quizOverlay: JobExperienceQuizLevel,
+    colors: createOneDimensionalArray("#74C18B", 7),
   },
   {
     id: SKILLS_ID,
     quizOverlay: SkillsQuizLevel,
+    colors: createOneDimensionalArray("#C15381", 7),
   },
   {
     id: PORTFOLIO_ID,
     quizOverlay: PortfolioQuizLevel,
+    colors: createOneDimensionalArray("#8353C1", 7),
   },
 ];
 
