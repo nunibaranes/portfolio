@@ -52,7 +52,10 @@ export default function withQuizOverlay<P extends object>({
 const StyledOverlayWrapper = styled(StyledWrapper)`
   max-width: 100%;
 
-  ${StyledWrapper}.animated-screen {
-    max-width: 100%;
+  ${StyledWrapper} {
+    &.animated-screen,
+    &.animated-page {
+      max-width: 100%;
+    }
   }
 `;
