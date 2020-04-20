@@ -1,5 +1,5 @@
 import React from "react";
-import { PORTFOLIO_ID } from "../../routers/constants";
+import { ABOUT_ID } from "../../routers/constants";
 import { StyledButton } from "../../styles/common/ui.styles";
 
 export default function AboutQuizLevel({
@@ -9,7 +9,7 @@ export default function AboutQuizLevel({
 }) {
   return (
     <>
-      <h2>{PORTFOLIO_ID} quiz</h2>
+      <h2>{ABOUT_ID} quiz</h2>
       <StyledButton
         onClick={() => {
           onQuizPass(true);

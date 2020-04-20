@@ -8,8 +8,12 @@ import {
   getChildWithColors,
 } from "../../../styles/common/utils.styles";
 import withLoadedClass from "../../../hoc/withLoadedClass";
-interface IStyledSVGWrapperLoaded extends IStyledSVGWrapper {
+interface IStyledSVGWrapperLoaded extends IStyledShapeMorph {
   loadedClass?: string;
+}
+
+interface IStyledShapeMorph extends IStyledSVGWrapper {
+  colors?: string[];
 }
 
 export default withLoadedClass(function ShapeMorph(
@@ -92,19 +96,24 @@ const StyledShapeMorph = styled(StyledSVGWrapper)`
         transform: scale(2);
       }
 
-      ${getChildWithColors({
-        colors: [
-          "#909090",
-          "#cecece",
-          "#b7b7b7",
-          "#969696",
-          "#8e8e8e",
-          "#8e8e8e",
-          "#8e8e8e",
-        ],
-        property: "fill",
-        addAnimationDelay: true,
-      })}
+      ${(props: IStyledShapeMorph) => {
+        const {
+          colors = [
+            "#909090",
+            "#cecece",
+            "#b7b7b7",
+            "#969696",
+            "#8e8e8e",
+            "#8e8e8e",
+            "#8e8e8e",
+          ],
+        } = props;
+        return getChildWithColors({
+          colors,
+          property: "fill",
+          addAnimationDelay: true,
+        });
+      }}
     }
 
     ${getFadeInFromLeftAnimation()}

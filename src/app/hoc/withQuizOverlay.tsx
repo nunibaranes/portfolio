@@ -7,6 +7,7 @@ import {
 } from "react-transition-group";
 import "../styles/animations/zoom-animations.scss";
 import { StyledWrapper } from "../styles/common/layout.styles";
+import styled from "styled-components";
 
 /**
  * This HOC Wraps the component with quiz overlay
@@ -21,7 +22,7 @@ export default function withQuizOverlay<P extends object>({
   return function WithQuizOverlay(props: P) {
     const [quizPassed, setQuizPassed] = useState(false);
     return (
-      <StyledWrapper className="animated-page quiz-overlay-screen">
+      <StyledOverlayWrapper className="animated-page quiz-overlay-screen">
         <TransitionGroup className="transition-group">
           <CSSTransition
             key={quizPassed ? "page" : "quiz"}
@@ -40,7 +41,15 @@ export default function withQuizOverlay<P extends object>({
             )}
           </CSSTransition>
         </TransitionGroup>
-      </StyledWrapper>
+      </StyledOverlayWrapper>
     );
   };
 }
+
+const StyledOverlayWrapper = styled(StyledWrapper)`
+  max-width: 100%;
+
+  ${StyledWrapper}.animated-screen {
+    max-width: 100%;
+  }
+`;

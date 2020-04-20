@@ -11,11 +11,22 @@ import JobExperienceQuizLevel from "../../pages/job-experience/JobExperienceQuiz
 import PortfolioQuizLevel from "../../pages/portfolio/PortfolioQuizOverlay";
 import SkillsQuizLevel from "../../pages/skills/SkillsQuizOverlay";
 import { StyledWrapper } from "../../styles/common/layout.styles";
+import ShapeMorph from "../../components/common/svg/shape-morph";
+import styled from "styled-components";
 
 const quizzes = [
   {
     id: ABOUT_ID,
     quizOverlay: AboutQuizLevel,
+    colors: [
+      "#FFE772",
+      "#FFEC8E",
+      "#FFEFA3",
+      "#ffdd38",
+      "#ffd400",
+      "#ffd400",
+      "#ffd400",
+    ],
   },
   {
     id: JOB_EXPERIENCE_ID,
@@ -40,8 +51,17 @@ export function QuizOverlay({
 }): JSX.Element {
   const quiz = findEntityInArrayById(routeId, quizzes);
   return (
-    <StyledWrapper className={`animated-screen ${routeId}-quiz-overlay`}>
-      {quiz.quizOverlay({ onQuizPass: onQuizPass })}
-    </StyledWrapper>
+    <StyledQuizOverlay className={`animated-screen ${routeId}-quiz-overlay`}>
+      <ShapeMorph colors={quiz.colors} />
+      <StyledWrapper>
+        {quiz.quizOverlay({ onQuizPass: onQuizPass })}
+      </StyledWrapper>
+    </StyledQuizOverlay>
   );
 }
+
+const StyledQuizOverlay = styled(StyledWrapper)`
+  ${StyledWrapper} {
+    z-index: 2;
+  }
+`;
