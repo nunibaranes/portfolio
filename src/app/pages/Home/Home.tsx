@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../components/common/svg/logo";
-import { ShapeMorph } from "../../components/common/svg/shape-morph";
+import ShapeMorph from "../../components/common/svg/shape-morph";
 import { routesNavigation } from "../../routers/routes";
 
 import { StyledSVGWrapper } from "../../styles/common/common.styles";
@@ -32,7 +32,7 @@ export default function Home() {
   const currentPage = routesNavigation[0];
   return (
     <StyledHomeWrapper className="animated-page home" alignItems="center">
-      <ShapeMorph width="100%" height="100%" />
+      <ShapeMorph />
       <div className="first half">
         <StyledSVGWrapper
           className="noonles"

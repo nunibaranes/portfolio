@@ -54,16 +54,15 @@ export const StyledHomeWrapper = styled(StyledWrapper)`
       stroke: currentColor;
     }
 
-    /* TODO: add animation */
-    /* &.noonles {
+    &.noonles {
       pointer-events: all;
-      &:hover {
+      /* &:hover {
         svg g path {
           stroke-dasharray: 100;
           animation: dash 5s linear;
         }
-      }
-    } */
+      } */
+    }
 
     &.morph-wrapper {
       position: absolute;
