@@ -13,7 +13,7 @@ export default withQuizOverlay({
     const rootRoute: IRoute = findEntityInArrayById(PORTFOLIO_ID, routes);
 
     return (
-      <StyledWrapper className={`page ${PORTFOLIO_ID}`}>
+      <StyledWrapper className={`animated-page ${PORTFOLIO_ID}`}>
         <h2>{rootRoute.title}</h2>
         <h3>Thank you</h3>
       </StyledWrapper>

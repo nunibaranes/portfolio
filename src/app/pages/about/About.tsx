@@ -15,7 +15,7 @@ export default withQuizOverlay({
     const rootRoute: IRoute = findEntityInArrayById(ABOUT_ID, routes);
 
     return (
-      <StyledWrapper className={`page ${ABOUT_ID}`}>
+      <StyledWrapper className={`animated-page ${ABOUT_ID}`}>
         <h2>{rootRoute.title}</h2>
         <Link to="/job-experience">
           <StyledButton type="button">Next level</StyledButton>

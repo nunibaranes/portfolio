@@ -1,7 +1,12 @@
 import React, { ComponentType, useState } from "react";
 import { QuizOverlay } from "../components/quiz-overlay/QuizOverlay";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import {
+  CSSTransition,
+  SwitchTransition,
+  TransitionGroup,
+} from "react-transition-group";
 import "../styles/animations/zoom-animations.scss";
+import { StyledWrapper } from "../styles/common/layout.styles";
 
 /**
  * This HOC Wraps the component with quiz overlay
@@ -16,20 +21,26 @@ export default function withQuizOverlay<P extends object>({
   return function WithQuizOverlay(props: P) {
     const [quizPassed, setQuizPassed] = useState(false);
     return (
-      <div className={`quiz-overlay-screen`}>
-        <CSSTransition in={quizPassed} timeout={500} classNames="zoom">
-          {quizPassed ? (
-            <Component {...props} />
-          ) : (
-            <QuizOverlay
-              routeId={routeId}
-              onQuizPass={() => {
-                setQuizPassed(true);
-              }}
-            />
-          )}
-        </CSSTransition>
-      </div>
+      <StyledWrapper className="animated-page quiz-overlay-screen">
+        <TransitionGroup className="transition-group">
+          <CSSTransition
+            key={quizPassed ? "page" : "quiz"}
+            timeout={300}
+            classNames="zoom"
+          >
+            {quizPassed ? (
+              <Component {...props} />
+            ) : (
+              <QuizOverlay
+                routeId={routeId}
+                onQuizPass={() => {
+                  setQuizPassed(true);
+                }}
+              />
+            )}
+          </CSSTransition>
+        </TransitionGroup>
+      </StyledWrapper>
     );
   };
 }

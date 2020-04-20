@@ -58,7 +58,7 @@ export const StyledWrapper = styled("section")`
       };
       align-items: ${alignItems || ""};
 
-      &.animated-page, animated-screen {
+      &.animated-page, &.animated-screen {
         position: absolute;
         top: 0;
         right: 0;

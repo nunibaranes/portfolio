@@ -12,7 +12,7 @@ export default function AppRouter() {
         <TransitionGroup className="page-transition-group">
           <CSSTransition
             key={location.key}
-            timeout={500}
+            timeout={5000}
             classNames="fade-in-left"
           >
             <Switch location={location}>
