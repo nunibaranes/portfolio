@@ -27,18 +27,3 @@ export default function AppRouter() {
     />
   );
 }
-
-// TODO: Improvements
-// export function RenderSubRoute({ match }: RouteComponentProps<TParams>) {
-//   const { params, url } = match;
-//   const location = useLocation();
-//   console.log("location", location);
-//   const urlArr = url.split("/").filter((s: string) => Boolean(s));
-//   console.log("urlArr", urlArr);
-//   const [rootRouteId] = urlArr;
-//   const subRoute = routes
-//     .find(({ id }) => id === rootRouteId)
-//     .routes.find(({ id }) => id === params.id);
-
-//   return subRoute.component();
-// }

@@ -65,6 +65,14 @@ export const getFadeInFromLeftAnimation = () => `
   }
 `;
 
+export const getDashedAnimation = () => `
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 1000;
+    }
+  }
+`;
+
 export const getChildWithColors = ({
   colors,
   property = "background",

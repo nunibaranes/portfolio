@@ -8,9 +8,19 @@ import Portfolio from "../pages/portfolio/Portfolio";
 import Resume from "../pages/resume/Resume";
 import Games from "../pages/games/Games";
 import NotFound from "../pages/not-found/NotFound";
+import {
+  HOME_ID,
+  RESUME_ID,
+  ABOUT_ID,
+  JOB_EXPERIENCE_ID,
+  SKILLS_ID,
+  PORTFOLIO_ID,
+  GAMES_ID,
+  NOT_FOUND_ID,
+} from "./constants";
 
 export const HOME: IRoute = {
-  id: "home",
+  id: HOME_ID,
   path: "/",
   exact: true,
   component: Home,
@@ -19,56 +29,57 @@ export const HOME: IRoute = {
 
 export const RESUME: IRoute = {
   title: "Resume",
-  id: "resume",
-  path: "/resume",
+  id: RESUME_ID,
+  path: `/${RESUME_ID}`,
   exact: true,
   component: Resume,
+  hidden: true,
 };
 
 export const ABOUT: IRoute = {
   title: "About",
-  id: "about",
-  path: "/about",
+  id: ABOUT_ID,
+  path: `/${ABOUT_ID}`,
   exact: true,
   component: About,
 };
 
 export const JOB_EXPERIENCE: IRoute = {
   title: "Job Experience",
-  id: "job-experience",
-  path: "/job-experience",
+  id: JOB_EXPERIENCE_ID,
+  path: `/${JOB_EXPERIENCE_ID}`,
   exact: true,
   component: JobExperience,
 };
 
 export const SKILLS: IRoute = {
   title: "Skills",
-  id: "skills",
-  path: "/skills",
+  id: SKILLS_ID,
+  path: `/${SKILLS_ID}`,
   exact: true,
   component: Skills,
 };
 
 export const PORTFOLIO: IRoute = {
   title: "Portfolio",
-  id: "portfolio",
-  path: "/portfolio",
+  id: PORTFOLIO_ID,
+  path: `/${PORTFOLIO_ID}`,
   exact: true,
   component: Portfolio,
 };
 
 export const GAMES: IRoute = {
-  id: "games",
+  id: GAMES_ID,
   title: "Games",
-  path: "/games",
+  path: `/${GAMES_ID}`,
   component: Games,
   hidden: true,
 };
 
 export const NOT_FOUND: IRoute = {
-  id: "not-found",
+  id: NOT_FOUND_ID,
   title: "Not Found 404",
-  path: "/404",
+  path: `/${NOT_FOUND_ID}`,
   component: NotFound,
   hidden: true,
 };

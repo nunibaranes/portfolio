@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { StyledSVGWrapper } from "../../styles/common/common.styles";
 import { StyledButton } from "../../styles/common/ui.styles";
 import { StyledWrapper } from "../../styles/common/layout.styles";
+import { getDashedAnimation } from "../../styles/common/utils.styles";
 
 // preparations for styling home page
 export const StyledHomeWrapper = styled(StyledWrapper)`
@@ -49,11 +50,20 @@ export const StyledHomeWrapper = styled(StyledWrapper)`
   }
 
   ${StyledSVGWrapper} {
-    svg {
-      g {
-        stroke: currentColor;
-      }
+    svg g {
+      stroke: currentColor;
     }
+
+    /* TODO: add animation */
+    /* &.noonles {
+      pointer-events: all;
+      &:hover {
+        svg g path {
+          stroke-dasharray: 100;
+          animation: dash 5s linear;
+        }
+      }
+    } */
 
     &.morph-wrapper {
       position: absolute;
@@ -63,5 +73,7 @@ export const StyledHomeWrapper = styled(StyledWrapper)`
       bottom: 0;
       z-index: 0;
     }
+
+    /* ${getDashedAnimation()} */
   }
 `;
