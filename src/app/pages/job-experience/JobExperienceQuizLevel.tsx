@@ -9,13 +9,16 @@ export default function JobExperienceQuizLevel({
 }) {
   return (
     <>
-      <h2>{JOB_EXPERIENCE_ID} quiz</h2>
+      <h2>Quiz Time!!!</h2>
+      <h3>Guess three skills I have?</h3>
+      or
+      <h3>Guess the name of the company I work for: _ _ _ _ _ _ _ _ _ _ </h3>
       <StyledButton
         onClick={() => {
           onQuizPass(true);
         }}
       >
-        pass
+        Skip
       </StyledButton>
     </>
   );

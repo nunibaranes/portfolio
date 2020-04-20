@@ -15,7 +15,10 @@ export default withQuizOverlay({
     return (
       <StyledWrapper className={`animated-page ${PORTFOLIO_ID}`}>
         <h2>{rootRoute.title}</h2>
-        <h3>Thank you</h3>
+        <div className="content">
+          <h3>// This page shows a gallery of my works</h3>
+          <h3>Thank you</h3>
+        </div>
       </StyledWrapper>
     );
   },

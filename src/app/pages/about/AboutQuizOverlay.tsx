@@ -9,13 +9,14 @@ export default function AboutQuizLevel({
 }) {
   return (
     <>
-      <h2>{ABOUT_ID} quiz</h2>
+      <h2>Quiz Time!!!</h2>
+      <h3>What is my profession?</h3>
       <StyledButton
         onClick={() => {
           onQuizPass(true);
         }}
       >
-        pass
+        Skip
       </StyledButton>
     </>
   );

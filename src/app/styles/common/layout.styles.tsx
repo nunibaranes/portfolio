@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import { StyledLink, StyledSVGWrapper } from "./common.styles";
 import { getStyledButton } from "./utils.styles";
+import { StyledButton } from "./ui.styles";
 
 export interface IStyledWrapper {
   noPadding?: boolean;
@@ -17,6 +18,19 @@ export interface IStyledWrapper {
 }
 
 export const StyledWrapper = styled("section")`
+  /* TODO, remove it after test */
+  .content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 980px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    height: 100%;
+    background-color: transparent;
+  }
+
   ${(props: IStyledWrapper) => {
     const {
       noPadding,
@@ -34,6 +48,7 @@ export const StyledWrapper = styled("section")`
     const defaultBorder = "1px solid #ccc";
 
     return `  
+      background-color: inherit;
       position: relative;
       display: flex;
       width: 100%;
@@ -150,6 +165,10 @@ export const StyledMainContainer = styled("section")`
       const { isDarkMode, darkColor = "black", lightColor = "white" } = props;
 
       return `
+
+        .page-transition-group {
+          background-color: inherit;
+        }
         background-color: ${isDarkMode ? darkColor : lightColor};
         color: ${isDarkMode ? lightColor : darkColor};
 

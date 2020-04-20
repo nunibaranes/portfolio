@@ -9,13 +9,16 @@ export default function PortfolioQuizLevel({
 }) {
   return (
     <>
-      <h2>{PORTFOLIO_ID} quiz</h2>
+      <h2>Quiz Time!!!</h2>
+      <h3>What is my hobby?</h3>
+      or
+      <h3>What was my profession before I became a developer?</h3>
       <StyledButton
         onClick={() => {
           onQuizPass(true);
         }}
       >
-        pass
+        Skip
       </StyledButton>
     </>
   );
