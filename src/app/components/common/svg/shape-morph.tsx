@@ -6,9 +6,8 @@ import { StyledSVGWrapper } from "../../../styles/common/common.styles";
 import {
   getFadeInFromLeftAnimation,
   getChildWithColors,
-  getScaleAndShrinkAnimation,
 } from "../../../styles/common/utils.styles";
-import withLoadedClass from "../../../hoc/withLoadedClass";
+import withLoadState from "../../../hoc/withLoadState";
 import { createOneDimensionalArray } from "../../../utils/utils";
 interface IStyledSVGWrapperLoaded extends IStyledShapeMorph {
   isLoaded?: boolean;
@@ -18,7 +17,7 @@ interface IStyledShapeMorph extends IStyledSVGWrapper {
   colors?: string[];
 }
 
-export default withLoadedClass(function ShapeMorph(
+export default withLoadState(function ShapeMorph(
   props: IStyledSVGWrapperLoaded
 ) {
   const { isLoaded } = props;
