@@ -65,15 +65,21 @@ export const getFadeInFromLeftAnimation = () => `
   }
 `;
 
-export const getDashedAnimation = () => `
-  @keyframes dash {
+export const getPathLineAnimation = (name: string, from: string) => `
+  @keyframes ${name} {
+    from {
+      stroke-dashoffset: ${from};
+    }
     to {
-      stroke-dashoffset: 1000;
+      stroke-dashoffset: 0;
     }
   }
-  @-webkit-keyframes dash {
+  @-webkit-keyframes ${name} {
+    from {
+      stroke-dashoffset: ${from};
+    }
     to {
-      stroke-dashoffset: 1000;
+      stroke-dashoffset: 0;
     }
   }
 `;
