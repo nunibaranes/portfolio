@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../components/common/svg/logo";
-import ShapeMorph from "../../components/common/svg/shape-morph";
+import Logo, { NoonlesLogo } from "../../components/common/svg/logo";
 import { routesNavigation } from "../../routers/routes";
 
-import { StyledSVGWrapper } from "../../styles/common/common.styles";
+import ShapeMorph from "../../components/common/svg/shape-morph";
 import { StyledButton } from "../../styles/common/ui.styles";
 import { StyledHomeWrapper } from "./home-styles";
 
@@ -33,30 +32,40 @@ export default function Home() {
   return (
     <StyledHomeWrapper className="animated-page home" alignItems="center">
       <ShapeMorph />
-      <div className="first half">
-        <StyledSVGWrapper
-          className="noonles"
-          width="300px"
-          height="300px"
-          fill="transparent"
-        >
-          <Logo />
-        </StyledSVGWrapper>
-        <h1>Hi, I'm Nofar Baranes</h1>
-      </div>
-      <div className="second half">
-        <article className="paragraph-wrapper">
-          <p>
-            I am 30 years old, living in Tel-Aviv, Israel <br />
-            I wanted to introduce my self in a sightly different way...
-            <br />
-            We are going to play little game in which each level exposes <br />a
-            piece of information about me.
-          </p>
-        </article>
-        <Link className="start-btn" to={currentPage.path}>
-          <StyledButton type="button">Start</StyledButton>
-        </Link>
+      <div className="content-boxes">
+        <div className="box">
+          <article className="paragraph-wrapper">
+            <h1>Hi,</h1>
+            <h2>I'm Nofar Baranes</h2>
+
+            <p>
+              I am 30 years old, living in Tel-Aviv, Israel <br />I wanted to
+              introduce my self in a sightly different way...
+            </p>
+          </article>
+        </div>
+        <div className="box">
+          <NoonlesLogo
+            width="500px"
+            height="500px"
+            fill="transparent"
+            animateLine
+            animateCurlsPulse
+          >
+            <Logo />
+          </NoonlesLogo>
+        </div>
+        <div className="box">
+          <article className="paragraph-wrapper">
+            <p>
+              We are going to play little game in which each level exposes{" "}
+              <br />a piece of information about me.
+            </p>
+          </article>
+          <Link className="start-btn" to={currentPage.path}>
+            <StyledButton type="button">Start</StyledButton>
+          </Link>
+        </div>
       </div>
     </StyledHomeWrapper>
   );

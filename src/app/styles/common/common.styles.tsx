@@ -8,9 +8,10 @@ export const StyledLink = styled("a")`
 export const StyledSVGWrapper = styled("div")`
   ${(props: IStyledSVGWrapper) => {
     const {
-      stroke = "#000",
       fill = "#fff",
+      stroke = "#000",
       strokeWidth = "5px",
+      strokeLinecap = "round",
       width = "100px",
       height = "100px",
       margin = "0 auto",
@@ -29,6 +30,7 @@ export const StyledSVGWrapper = styled("div")`
           stroke: ${stroke};
           fill: ${fill};
           stroke-width: ${strokeWidth};
+          stroke-linecap: ${strokeLinecap};
         }
       }
     `;

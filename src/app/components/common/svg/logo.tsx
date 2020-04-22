@@ -1,4 +1,10 @@
 import React from "react";
+import {
+  getPathLineInAnimation,
+  getPulseAnimation,
+} from "../../../styles/common/utils.styles";
+import styled from "styled-components";
+import { StyledSVGWrapper } from "../../../styles/common/common.styles";
 
 export default function LogoNofar() {
   return (
@@ -42,3 +48,89 @@ export default function LogoNofar() {
     </svg>
   );
 }
+
+const curlsPulse = `
+animation: curls_line 1s linear both, curls_pulse 1s infinite;
+animation-delay: 4.5s, 2s;
+-webkit-transform-origin: center center;
+transform-origin: center center;
+
+&:nth-child(2) {
+  animation-delay: 4.5s, 2.1s;
+}
+&:nth-child(3) {
+  animation-delay: 4.5s, 2.2s;
+}
+&:nth-child(4) {
+  animation-delay: 4.5s, 3.3s;
+}
+&:nth-child(5) {
+  animation-delay: 4.5s, 3.4s;
+}
+&:nth-child(6) {
+  animation-delay: 4.5s, 3.5;
+}
+${getPulseAnimation({
+  from: 0.9,
+  to: 1.02,
+  name: "curls_pulse",
+})}
+`;
+export const noonlesSVGLineAnimateStyles = (
+  animateCurlsPulse?: boolean
+) => `svg g#head path {
+  &#face {
+    opacity: 0;
+    stroke-dasharray: 1500;
+    stroke-dashoffset: 1500;
+    animation: face_line 3s linear both;
+    animation-delay: 2s;
+    ${getPathLineInAnimation("face_line", 1500)}
+  }
+
+  &#hair {
+    opacity: 0;
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+    animation: hair_line 3s linear both;
+    animation-delay: 2s;
+    ${getPathLineInAnimation("hair_line", 2000)}
+  }
+}
+
+svg g#curls path {
+  opacity: 0;
+  stroke-dasharray: 210;
+  stroke-dashoffset: 210;
+  
+  animation: curls_line 1s linear both;
+  animation-delay: 4.5s;
+  ${getPathLineInAnimation("curls_line", 200)}
+  
+  ${animateCurlsPulse && curlsPulse}
+}`;
+
+export const NoonlesLogo = styled(StyledSVGWrapper)`
+  ${(props: {
+    width?: string;
+    height?: string;
+    animateLine?: boolean;
+    animateCurlsPulse?: boolean;
+  }) => {
+    const {
+      width = "300px",
+      height = "300px",
+      animateLine = false,
+      animateCurlsPulse = false,
+    } = props;
+    return `
+        position: relative;
+        max-width: ${width};
+        width: ${width};
+        height: ${height};
+
+        ${animateLine && noonlesSVGLineAnimateStyles(animateCurlsPulse)}
+      }
+    `;
+  }}
+`;

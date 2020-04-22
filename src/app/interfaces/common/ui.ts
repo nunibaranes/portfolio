@@ -39,4 +39,5 @@ export interface IStyledSVGWrapper {
   width?: string;
   height?: string;
   margin?: string;
+  strokeLinecap?: string;
 }

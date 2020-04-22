@@ -1,5 +1,6 @@
 import { StyledButton, StyledToggleButton } from "./ui.styles";
 import { Alignment } from "../../interfaces/common/ui";
+import { createOneDimensionalArray } from "../../utils/utils";
 
 export const getStyledButton = ({
   isDarkMode,
@@ -65,21 +66,29 @@ export const getFadeInFromLeftAnimation = () => `
   }
 `;
 
-export const getPathLineAnimation = (name: string, from: string) => `
+export const getPathLineInAnimation = (name: string, from: number) => `
   @keyframes ${name} {
-    from {
+    0% {
       stroke-dashoffset: ${from};
     }
-    to {
+    1% {
+      opacity: 1;
+    }
+    100% {
       stroke-dashoffset: 0;
+      opacity: 1;
     }
   }
   @-webkit-keyframes ${name} {
-    from {
+    0% {
       stroke-dashoffset: ${from};
     }
-    to {
+    1% {
+      opacity: 1;
+    }
+    100% {
       stroke-dashoffset: 0;
+      opacity: 1;
     }
   }
 `;
@@ -122,9 +131,64 @@ export const getChildWithColors = ({
   colors.forEach((color, index) => {
     nthStyles += ` &:nth-child(${colors.length}n + ${index + 1}) {
         ${property}: ${color};
-        ${addAnimationDelay && `animation-delay: 0.${colors.length - index}s;`}
+        ${addAnimationDelay && getDynamicNTHChildAnimationDelay(colors.length)}
       }`;
   });
 
   return nthStyles;
 };
+
+export const getDynamicNTHChildAnimationDelay = (len: number) => {
+  const children = createOneDimensionalArray("", len);
+  let nthStyles = "";
+  children.forEach((item: any, index: number) => {
+    nthStyles += ` &:nth-child(${len}n + ${index + 1}) {
+        ${`animation-delay: 0.${len - index}s;`}
+      }`;
+  });
+
+  return nthStyles;
+};
+
+export const getPulseAnimation = ({
+  from,
+  to,
+  name,
+}: {
+  from: number;
+  to: number;
+  name: string;
+}) => `
+@-webkit-keyframes ${name} {
+  from {
+    -webkit-transform: scale3d(${from}, ${from}, ${from});
+    transform: scale3d(${from}, ${from}, ${from});
+  }
+
+  50% {
+    -webkit-transform: scale3d(${to}, ${to}, ${to});
+    transform: scale3d(${to}, ${to}, ${to});
+  }
+
+  to {
+    -webkit-transform: scale3d(${from}, ${from}, ${from});
+    transform: scale3d(${from}, ${from}, ${from});
+  }
+}
+
+@keyframes ${name} {
+  from {
+    -webkit-transform: scale3d(${from}, ${from}, ${from});
+    transform: scale3d(${from}, ${from}, ${from});
+  }
+
+  50% {
+    -webkit-transform: scale3d(${to}, ${to}, ${to});
+    transform: scale3d(${to}, ${to}, ${to});
+  }
+
+  to {
+    -webkit-transform: scale3d(${from}, ${from}, ${from});
+    transform: scale3d(${from}, ${from}, ${from});
+  }
+}`;
