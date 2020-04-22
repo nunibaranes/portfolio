@@ -39,7 +39,7 @@ export default withLoadState(function ShapeMorph(
       height="100%"
       {...props}
     >
-      <svg viewBox="0 200 1500 200">
+      <svg>
         <g>
           <path
             className="path_1"
