@@ -51,15 +51,15 @@ export default function LogoNofar() {
 
 const curlsPulse = `
 animation: curls_line 1s linear both, curls_pulse 1s infinite;
-animation-delay: 4.5s, 2s;
+animation-delay: 4.5s, 3s;
 -webkit-transform-origin: center center;
 transform-origin: center center;
 
 &:nth-child(2) {
-  animation-delay: 4.5s, 2.1s;
+  animation-delay: 4.5s, 3.1s;
 }
 &:nth-child(3) {
-  animation-delay: 4.5s, 2.2s;
+  animation-delay: 4.5s, 3.2s;
 }
 &:nth-child(4) {
   animation-delay: 4.5s, 3.3s;
@@ -70,8 +70,9 @@ transform-origin: center center;
 &:nth-child(6) {
   animation-delay: 4.5s, 3.5;
 }
+
 ${getPulseAnimation({
-  from: 0.9,
+  from: 1,
   to: 1.02,
   name: "curls_pulse",
 })}
@@ -128,6 +129,10 @@ export const NoonlesLogo = styled(StyledSVGWrapper)`
         max-width: ${width};
         width: ${width};
         height: ${height};
+        
+        svg g path {
+          stroke: currentColor;
+        }
 
         ${animateLine && noonlesSVGLineAnimateStyles(animateCurlsPulse)}
       }

@@ -1,11 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+
 import Logo, { NoonlesLogo } from "../../components/common/svg/logo";
 import { routesNavigation } from "../../routers/routes";
 
 import ShapeMorph from "../../components/common/svg/shape-morph";
+import { StyledHomeWrapper, StyledLinkStartCTA } from "./home-styles";
 import { StyledButton } from "../../styles/common/ui.styles";
-import { StyledHomeWrapper } from "./home-styles";
 
 /**
  * TODO:
@@ -35,13 +37,13 @@ export default function Home() {
       <div className="content-boxes">
         <div className="box">
           <article className="paragraph-wrapper">
-            <h1>Hi,</h1>
-            <h2>I'm Nofar Baranes</h2>
-
-            <p>
-              I am 30 years old, living in Tel-Aviv, Israel <br />I wanted to
-              introduce my self in a sightly different way...
-            </p>
+            <div className="headings animate-fade-in animate-from-left">
+              <h1>Hi,</h1>
+              <h2>I'm Nofar Baranes</h2>
+            </div>
+            <div className="intro animate-fade-in animate-from-left">
+              <p>I wanted to introduce my self in a sightly different way...</p>
+            </div>
           </article>
         </div>
         <div className="box">
@@ -57,14 +59,27 @@ export default function Home() {
         </div>
         <div className="box">
           <article className="paragraph-wrapper">
-            <p>
-              We are going to play little game in which each level exposes{" "}
-              <br />a piece of information about me.
-            </p>
+            <div className="intro animate-fade-in animate-from-right">
+              <p>
+                We are going to play little game in which each level exposes{" "}
+                <br />a piece of information about me.
+              </p>
+            </div>
+            <StyledLinkStartCTA
+              className="start-btn animate-fade-in animate-from-right"
+              to={currentPage.path}
+            >
+              <span className="label">
+                Start <br />
+                Here
+              </span>
+              <span className="icon">
+                <FontAwesomeIcon className="fas" icon={faChevronRight} />
+                <FontAwesomeIcon className="fas" icon={faChevronRight} />
+              </span>
+              {/* <StyledButton type="button">Start Here</StyledButton> */}
+            </StyledLinkStartCTA>
           </article>
-          <Link className="start-btn" to={currentPage.path}>
-            <StyledButton type="button">Start</StyledButton>
-          </Link>
         </div>
       </div>
     </StyledHomeWrapper>

@@ -17,6 +17,11 @@ export interface IStyledWrapper {
   margin?: string;
 }
 
+export const fontFamily = {
+  openSans: "'Open Sans', sans-serif",
+  righteous: "'Righteous', cursive",
+};
+
 export const StyledWrapper = styled("section")`
   /* TODO, remove it after test */
   .content {
@@ -151,6 +156,7 @@ export const StyledHeader = styled("header")`
 `;
 
 export const StyledMainContainer = styled("section")`
+  font-family: ${fontFamily.openSans};
   position: relative;
   min-height: 100vh;
   padding: 50px 0;

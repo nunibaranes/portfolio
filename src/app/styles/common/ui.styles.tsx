@@ -64,8 +64,8 @@ export const StyledButton = styled("button")`
 export const StyledToggleButton = styled(StyledButton)`
   ${({ isActive }: { isActive: boolean }) => {
     return `
-    min-width: 55px;
-    height: 30px;
+    min-width: 75px;
+    height: 40px;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -76,26 +76,26 @@ export const StyledToggleButton = styled(StyledButton)`
     position: relative;
     
     .label {
-      width: 25px;
-      height: 25px;
+      width: 35px;
+      height: 35px;
       -webkit-border-radius: 50%;
       -moz-border-radius: 50%;
       border-radius: 50%;
       position: absolute;
-      left: 2px;
+      left: 3px;
       top: 50%;
       transform: translateY(-50%);
       transition: left 0.2s cubic-bezier(0.68, -0.55, 0.27, 01.55) 200ms;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 1.8em;
+      font-size: 2.5em;
 
       ${
         isActive
           ? `
             position: absolute;
-            left: 27px;
+            left: 37px;
           `
           : ""
       }
