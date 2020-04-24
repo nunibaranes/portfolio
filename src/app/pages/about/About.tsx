@@ -8,6 +8,7 @@ import withQuizOverlay from "../../hoc/withQuizOverlay";
 import { findEntityInArrayById } from "../../utils/utils";
 import { StyledButton } from "../../styles/common/ui.styles";
 import { Link } from "react-router-dom";
+import { AboutBg } from "./svgs";
 
 export default withQuizOverlay({
   routeId: ABOUT_ID,
@@ -16,6 +17,7 @@ export default withQuizOverlay({
 
     return (
       <StyledWrapper className={`animated-page ${ABOUT_ID}`}>
+        <AboutBg/>
         <h2>{rootRoute.title}</h2>
         <div className="content">
           <h3>// This page shows information about me</h3>
@@ -29,3 +31,5 @@ export default withQuizOverlay({
     );
   },
 });
+
+
