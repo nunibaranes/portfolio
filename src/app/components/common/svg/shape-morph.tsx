@@ -25,10 +25,10 @@ export default withLoadState(function ShapeMorph(
 
   useEffect(() => {
     if (isLoaded) {
-      setLoadedClass("loaded");
+      setLoadedClass("load loaded");
 
       setTimeout(() => {
-        setLoadedClass("");
+        setLoadedClass("loaded");
       }, 2000);
     }
   }, [isLoaded]);
@@ -85,7 +85,7 @@ const StyledShapeMorph = styled(StyledSVGWrapper)`
   bottom: 0;
   z-index: 0;
 
-  &.loaded {
+  &.load {
     svg g path {
       animation: 0.5s ease-out 0s 1 slideInFromLeft;
       -webkit-animation-fill-mode: both;
@@ -94,12 +94,23 @@ const StyledShapeMorph = styled(StyledSVGWrapper)`
     }
   }
 
+  &.loaded,
+  .load {
+    svg g path {
+      opacity: 0.2;
+
+      &:hover {
+        transform: scale(2);
+      }
+    }
+  }
+
   svg g {
     stroke: transparent;
     stroke-width: 0;
 
     path {
-      opacity: 0.2;
+      opacity: 0;
       transform: translateX(0);
       transform: scale(1);
       transition: transform 3s;

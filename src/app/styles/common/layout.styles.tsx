@@ -34,6 +34,13 @@ export const StyledWrapper = styled("section")`
     margin: 0 auto;
     height: 100%;
     background-color: transparent;
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+
+    .btn {
+      pointer-events: all;
+    }
   }
 
   ${(props: IStyledWrapper) => {

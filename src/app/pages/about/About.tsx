@@ -17,13 +17,13 @@ export default withQuizOverlay({
 
     return (
       <StyledWrapper className={`animated-page ${ABOUT_ID}`}>
-        <AboutBg/>
-        <h2>{rootRoute.title}</h2>
+        <AboutBg />
         <div className="content">
+          <h2>{rootRoute.title}</h2>
           <h3>// This page shows information about me</h3>
           <br />
           <h4>Want to continue?</h4>
-          <Link to="/job-experience">
+          <Link className="btn" to="/job-experience">
             <StyledButton type="button">Next level</StyledButton>
           </Link>
         </div>
@@ -31,5 +31,3 @@ export default withQuizOverlay({
     );
   },
 });
-
-
