@@ -8,7 +8,7 @@ import withQuizOverlay from "../../hoc/withQuizOverlay";
 import { findEntityInArrayById } from "../../utils/utils";
 import { StyledButton } from "../../styles/common/ui.styles";
 import { Link } from "react-router-dom";
-import { AboutBg } from "./svgs";
+import { AboutBg } from "./svgs/svgs";
 
 export default withQuizOverlay({
   routeId: ABOUT_ID,
