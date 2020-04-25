@@ -71,6 +71,16 @@ export const MainPath = ({
           id="main-path"
         />
         <g ref={personalInfoBtn} className="button" id="personal-info">
+          <text
+            id="b89NP5EA2w"
+            x="246.92"
+            y="730.77"
+            transform="translate(-4.675 8.08)"
+          >
+            <tspan x="246.92" dy="1em">
+              Personal Info
+            </tspan>
+          </text>
           <path
             d="M291.8 821.08c0 22.56-18.32 40.89-40.89 40.89s-40.89-18.33-40.89-40.89c0-22.57 18.32-40.89 40.89-40.89s40.89 18.32 40.89 40.89z"
             className="circle personal-info"
@@ -105,6 +115,17 @@ export const MainPath = ({
           </g>
         </g>
         <g ref={educationBtn} className="button" id="education">
+          <text
+            xmlns="http://www.w3.org/2000/svg"
+            id="bXeWAysrQ"
+            x="246.92"
+            y="730.77"
+            transform="translate(515.91 -239.608)"
+          >
+            <tspan x="246.92" dy="1em">
+              Education
+            </tspan>
+          </text>
           <path
             d="M812.38 573.39c0 22.57-18.32 40.89-40.89 40.89s-40.89-18.32-40.89-40.89 18.32-40.89 40.89-40.89 40.89 18.32 40.89 40.89z"
             className="circle education"
@@ -123,6 +144,16 @@ export const MainPath = ({
           </g>
         </g>
         <g ref={professionBtn} className="button" id="profession">
+          <text
+            id="f3RNiezNiF"
+            x="246.92"
+            y="730.77"
+            transform="translate(851.827 -494.63)"
+          >
+            <tspan x="246.92" dy="1em">
+              Profession
+            </tspan>
+          </text>
           <path
             d="M1148.3 318.36c0 22.57-18.32 40.9-40.89 40.9s-40.89-18.33-40.89-40.9c0-22.56 18.32-40.89 40.89-40.89s40.89 18.33 40.89 40.89z"
             id="h7KFn2TbD"
@@ -184,6 +215,17 @@ export const MainPath = ({
           </g>
         </g>
         <g ref={moreInfoBtn} className="button" id="more-information">
+          <text
+            xmlns="http://www.w3.org/2000/svg"
+            id="aatOAIi66h"
+            x="246.92"
+            y="730.77"
+            transform="translate(1256.225 -614.646)"
+          >
+            <tspan x="246.92" dy="1em">
+              More Information
+            </tspan>
+          </text>
           <path
             d="M1552.7 198.35c0 22.57-18.32 40.89-40.89 40.89s-40.89-18.32-40.89-40.89 18.32-40.89 40.89-40.89 40.89 18.32 40.89 40.89z"
             id="a19Bnh1Uz"
@@ -213,6 +255,17 @@ export const MainPath = ({
           </g>
         </g>
         <g ref={continueBtn} className="button" id="continue">
+          <text
+            xmlns="http://www.w3.org/2000/svg"
+            id="c2oFdl2VZ9"
+            x="246.92"
+            y="730.77"
+            transform="translate(1508.416 -693.096)"
+          >
+            <tspan x="246.92" dy="1em">
+              Next Level
+            </tspan>
+          </text>
           <path
             d="M1804.89 119.62c0 22.57-18.32 40.89-40.89 40.89s-40.89-18.32-40.89-40.89 18.32-40.89 40.89-40.89 40.89 18.32 40.89 40.89z"
             className="circle continue"
@@ -245,6 +298,7 @@ export const StyledSVGMainPath = styled("svg")`
       stroke-width: 2;
       fill: transparent;
       pointer-events: none;
+      stroke: currentColor;
 
       &#main-path {
         stroke-dasharray: 2800;
@@ -255,11 +309,12 @@ export const StyledSVGMainPath = styled("svg")`
       }
 
       &.circle {
-        fill: #f6ce01;
+        fill: #ffb600;
       }
     }
 
     &.button {
+      position: relative;
       opacity: 0;
       clip-path: circle(0);
       animation: fade_path_buttons 0.3s ease-in both;
@@ -267,12 +322,26 @@ export const StyledSVGMainPath = styled("svg")`
       pointer-events: all;
       cursor: pointer;
 
+      text {
+        stroke-width: 1;
+        pointer-events: none;
+        fill: currentColor;
+        stroke: currentColor;
+      }
+
+      &:before {
+        content: "TEST";
+        display: block;
+        position: absolute;
+        top: 0;
+      }
+
       &.selected {
         path.circle {
-          fill: #000;
+          fill: currentColor;
         }
         .icon path {
-          stroke: #f6ce01;
+          stroke: #ffb600;
         }
       }
 

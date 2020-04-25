@@ -74,7 +74,7 @@ export const StyledLogoHandWavingHi = styled("svg")`
     g {
       path {
         fill-opacity: 0;
-        stroke: #000;
+        stroke: currentColor;
         stroke-width: 2;
       }
 
