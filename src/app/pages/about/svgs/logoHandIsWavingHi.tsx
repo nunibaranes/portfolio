@@ -61,11 +61,11 @@ export const LogoHandIsWavingHi = () => (
 
 export const StyledLogoHandWavingHi = styled("svg")`
   && {
-    width: 600px;
+    width: 31%;
     height: 600px;
     position: absolute;
     top: 0;
-    left: -160px;
+    left: -8%;
     opacity: 0;
     -webkit-transform: translate3d(100%, 0, 0);
     animation: slide_from_left 1s ease-in both;

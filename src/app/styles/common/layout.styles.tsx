@@ -22,9 +22,28 @@ export const fontFamily = {
   righteous: "'Righteous', cursive",
 };
 
+export const StyledContent = styled("div")`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 980px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  height: 100%;
+  background-color: transparent;
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+
+  .btn {
+    pointer-events: all;
+  }
+`;
+
 export const StyledWrapper = styled("section")`
-  /* TODO, remove it after test */
-  .content {
+  /* TODO, remove it after replace to StyledContent */
+  & > .content {
     display: flex;
     flex-direction: column;
     width: 100%;

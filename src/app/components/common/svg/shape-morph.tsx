@@ -84,6 +84,7 @@ const StyledShapeMorph = styled(StyledSVGWrapper)`
   left: -10px;
   bottom: 0;
   z-index: 0;
+  transform: scale(1.2);
 
   &.load {
     svg g path {
