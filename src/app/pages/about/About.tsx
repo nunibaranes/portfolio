@@ -12,9 +12,10 @@ import { ABOUT_ID } from "../../routers/constants";
 import withQuizOverlay from "../../hoc/withQuizOverlay";
 import { findEntityInArrayById } from "../../utils/utils";
 import { StyledButton } from "../../styles/common/ui.styles";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { AboutBg } from "./svgs/svgs";
 import { getBounceInAnimation } from "../../styles/common/utils.styles";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const sections = [
   {
@@ -33,22 +34,22 @@ const sections = [
     id: "more-information",
     title: "More Info",
   },
-  {
-    id: "continue",
-    title: "Continue",
-  },
 ];
 
 export default withQuizOverlay({
   routeId: ABOUT_ID,
   Component: function About() {
+    let history = useHistory();
     const rootRoute: IRoute = findEntityInArrayById(ABOUT_ID, routes);
     const [selectedSection, setSelectedSection] = useState(sections[0]);
 
     const onClickedBgButton = (selected?: string) => {
       const selection = sections.find((section) => selected === section.id);
+
       if (selection) {
         setSelectedSection(selection);
+      } else if (selected === "continue") {
+        history.push("/job-experience");
       }
     };
 
@@ -62,16 +63,22 @@ export default withQuizOverlay({
           <div className="title">
             <h2>{rootRoute.title}</h2>
           </div>
-          <div className="intro">
-            <p>{selectedSection.title}</p>
-          </div>
-          <div className="content">
-            <h3>// This page shows information about me</h3>
-          </div>
-          {/* <h4>Want to continue?</h4>
-          <Link className="btn" to="/job-experience">
-            <StyledButton type="button">Next level</StyledButton>
-          </Link> */}
+          <TransitionGroup className="transition-group">
+            <CSSTransition
+              key={selectedSection.id}
+              timeout={500}
+              classNames="fade-in-left"
+            >
+              <div className="selection-content">
+                <div className="intro">
+                  <p>{selectedSection.title}</p>
+                </div>
+                <div className="content">
+                  <h3>// This page shows information about me</h3>
+                </div>
+              </div>
+            </CSSTransition>
+          </TransitionGroup>
         </StyledContent>
       </StyledAboutWrapper>
     );
@@ -95,10 +102,12 @@ const StyledAboutWrapper = styled(StyledWrapper)`
     ${StyledContent} {
       max-width: 1400px;
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 0.5fr) 1fr;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 3fr;
       grid-column-gap: 0px;
       grid-row-gap: 0px;
+      text-align: left;
+      padding-left: 150px;
 
       .title {
         opacity: 0;
@@ -113,19 +122,26 @@ const StyledAboutWrapper = styled(StyledWrapper)`
         }
       }
 
-      .intro {
-        grid-area: 2 / 1 / 3 / 2;
-      }
-
-      .content {
-        grid-area: 3 / 2 / 4 / 3;
-      }
-
-      .intro,
-      .content {
+      .transition-group {
+        height: 100%;
         -webkit-animation: bounceIn 0.75s both;
         animation: bounceIn 0.75s both;
         animation-delay: 5s;
+
+        .selection-content {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 1fr 3fr;
+          height: 100%;
+
+          .intro {
+            grid-area: 1 / 1 / 2 / 2;
+          }
+
+          .content {
+            grid-area: 2 / 2 / 5 / 3;
+          }
+        }
       }
 
       ${getBounceInAnimation()}
