@@ -4,7 +4,28 @@ import styled from "styled-components";
 import { IStyledSVGWrapper } from "../../interfaces/common/ui";
 import { StyledSVGWrapper } from "../../styles/common/common.styles";
 import { getPathLineInAnimation } from "../../styles/common/utils.styles";
-
+const sections = [
+  {
+    id: "personal-info",
+    title: "Personal Info",
+  },
+  {
+    id: "education",
+    title: "Education",
+  },
+  {
+    id: "profession",
+    title: "Profession",
+  },
+  {
+    id: "more-info",
+    title: "More Info",
+  },
+  {
+    id: "continue",
+    title: "Continue",
+  },
+];
 export const AboutBg = (props: IStyledSVGWrapper) => {
   const personalInfoBtn = useRef(null);
   const educationBtn = useRef(null);
@@ -14,7 +35,7 @@ export const AboutBg = (props: IStyledSVGWrapper) => {
 
   return (
     <StyledAboutSvgBG width="100%" height="100%" {...props}>
-      <svg
+      <StyledMainPathSVG
         xmlns="http://www.w3.org/2000/svg"
         viewBox="-170.962 77.231 2310.209 784.735"
       >
@@ -23,7 +44,7 @@ export const AboutBg = (props: IStyledSVGWrapper) => {
             d="M2136.25 79.82c-284.15-8.45-396.65 33.39-482.65 86.39s-126 56-239 7c-75.34-32.67-130.67-26-166 20-50.87 75.33-95.74 118.67-134.6 130-58.29 17-109.7-30-142.7-33-33-3-124-17-105 139s-76 147-123 156-118.34-54.18-219-24.92c-100.67 29.26-153.1 137.47-166.58 190.98-13.49 53.52-107.58 110.09-190.73 49.09-83.15-61.01-251.2-15.52-336.45 49.48"
             id="main-path"
           />
-          <g ref={personalInfoBtn} className="button" id="personal-info-button">
+          <g ref={personalInfoBtn} className="button" id="personal-info">
             <path
               d="M291.8 821.08c0 22.56-18.32 40.89-40.89 40.89s-40.89-18.33-40.89-40.89c0-22.57 18.32-40.89 40.89-40.89s40.89 18.32 40.89 40.89z"
               className="circle"
@@ -57,7 +78,7 @@ export const AboutBg = (props: IStyledSVGWrapper) => {
               />
             </g>
           </g>
-          <g ref={educationBtn} className="button" id="education-button">
+          <g ref={educationBtn} className="button" id="education">
             <path
               d="M812.38 573.39c0 22.57-18.32 40.89-40.89 40.89s-40.89-18.32-40.89-40.89 18.32-40.89 40.89-40.89 40.89 18.32 40.89 40.89z"
               className="circle"
@@ -75,7 +96,7 @@ export const AboutBg = (props: IStyledSVGWrapper) => {
               />
             </g>
           </g>
-          <g ref={professionBtn} className="button" id="profession-button">
+          <g ref={professionBtn} className="button" id="profession">
             <path
               d="M1148.3 318.36c0 22.57-18.32 40.9-40.89 40.9s-40.89-18.33-40.89-40.9c0-22.56 18.32-40.89 40.89-40.89s40.89 18.33 40.89 40.89z"
               id="h7KFn2TbD"
@@ -136,7 +157,7 @@ export const AboutBg = (props: IStyledSVGWrapper) => {
               />
             </g>
           </g>
-          <g ref={moreInfoBtn} className="button" id="more-information-button">
+          <g ref={moreInfoBtn} className="button" id="more-information">
             <path
               d="M1552.7 198.35c0 22.57-18.32 40.89-40.89 40.89s-40.89-18.32-40.89-40.89 18.32-40.89 40.89-40.89 40.89 18.32 40.89 40.89z"
               id="a19Bnh1Uz"
@@ -165,7 +186,7 @@ export const AboutBg = (props: IStyledSVGWrapper) => {
               />
             </g>
           </g>
-          <g ref={continueBtn} className="button" id="next-button">
+          <g ref={continueBtn} className="button" id="continue">
             <path
               d="M1804.89 119.62c0 22.57-18.32 40.89-40.89 40.89s-40.89-18.32-40.89-40.89 18.32-40.89 40.89-40.89 40.89 18.32 40.89 40.89z"
               className="circle"
@@ -187,76 +208,55 @@ export const AboutBg = (props: IStyledSVGWrapper) => {
             </g>
           </g>
         </g>
-      </svg>
+      </StyledMainPathSVG>
     </StyledAboutSvgBG>
   );
 };
 
-const StyledAboutSvgBG = styled(StyledSVGWrapper)`
-  width: 100%;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+const buttonStyles = `
+  &.button {
+    opacity: 0;
+    clip-path: circle(0);
+    animation: fade_path_buttons 0.3s ease-in both;
+    animation-delay: 2s;
 
-  svg g {
-    &.button {
-      opacity: 0;
-      clip-path: circle(0);
-      animation: showButtons 0.3s ease-in both;
-      animation-delay: 2s;
+    &:nth-child(2) {
+      animation-delay: 2.3s;
+    }
+    &:nth-child(3) {
+      animation-delay: 2.6s;
+    }
+    &:nth-child(4) {
+      animation-delay: 2.9s;
+    }
+    &:nth-child(5) {
+      animation-delay: 3s;
+    }
+    &:nth-child(6) {
+      animation-delay: 3.4s;
+    }
 
-      &:nth-child(2) {
-        animation-delay: 2.3s;
-      }
-      &:nth-child(3) {
-        animation-delay: 2.6s;
-      }
-      &:nth-child(4) {
-        animation-delay: 2.9s;
-      }
-      &:nth-child(5) {
-        animation-delay: 3s;
-      }
-      &:nth-child(6) {
-        animation-delay: 3.4s;
-      }
+    path.circle,
+    .icon path {
+      opacity: 1;
+    }
 
-      path.circle,
-      .icon path {
+    @keyframes fade_path_buttons {
+      0% {
+        opacity: 0;
+        clip-path: circle(0);
+      }
+      100% {
+        clip-path: circle(100%);
         opacity: 1;
       }
-
-      @keyframes showButtons {
-        0% {
-          opacity: 0;
-          clip-path: circle(0);
-        }
-        100% {
-          clip-path: circle(100%);
-          opacity: 1;
-        }
-      }
-
-      @keyframes popButton {
-        0% {
-          transform: scale(1);
-        }
-        75% {
-          transform: scale(0.9);
-        }
-        85% {
-          transform: scale(1.1);
-        }
-        95% {
-          transform: scale(1);
-        }
-        100% {
-          transform: scale(1);
-        }
-      }
     }
+  }
+`;
+
+const StyledMainPathSVG = styled("svg")`
+  g {
+    ${buttonStyles}
 
     path {
       opacity: 0;
@@ -275,4 +275,13 @@ const StyledAboutSvgBG = styled(StyledSVGWrapper)`
       }
     }
   }
+`;
+
+const StyledAboutSvgBG = styled(StyledSVGWrapper)`
+  width: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 `;
