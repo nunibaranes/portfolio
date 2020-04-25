@@ -123,6 +123,7 @@ const StyledAboutWrapper = styled(StyledWrapper)`
       }
 
       .transition-group {
+        position: relative;
         height: 100%;
         -webkit-animation: bounceIn 0.75s both;
         animation: bounceIn 0.75s both;
@@ -133,6 +134,10 @@ const StyledAboutWrapper = styled(StyledWrapper)`
           grid-template-columns: 1fr 1fr;
           grid-template-rows: 1fr 3fr;
           height: 100%;
+          width: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
 
           .intro {
             grid-area: 1 / 1 / 2 / 2;
