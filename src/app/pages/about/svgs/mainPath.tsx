@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, MouseEventHandler } from "react";
+import React, { useRef, useEffect, MouseEventHandler, useState } from "react";
 import styled from "styled-components";
 import { getPathLineInAnimation } from "../../../styles/common/utils.styles";
 
@@ -9,6 +9,7 @@ export const MainPath = ({
   onClickedBtn?: (selected?: string) => void;
   selectedBtnId?: string;
 }) => {
+  const [hovering, setHovering] = useState("");
   const personalInfoBtn = useRef<SVGSVGElement | null>(null);
   const educationBtn = useRef<SVGSVGElement | null>(null);
   const professionBtn = useRef<SVGSVGElement | null>(null);
@@ -34,9 +35,21 @@ export const MainPath = ({
     }
   };
 
+  const handleMouse = (e: MouseEvent) => {
+    const clickedBtn = e.target as Element;
+    if (e.type === "mouseenter") {
+      setHovering(clickedBtn.id);
+    } else {
+      setHovering("");
+    }
+  };
+
   useEffect(() => {
     buttons.map((button) => {
       button.current.addEventListener("click", handleClick);
+      button.current.addEventListener("mouseenter", handleMouse);
+      button.current.addEventListener("mouseleave", handleMouse);
+
       if (button.current.id === selectedBtnId) {
         button.current.classList.add("selected");
       }
@@ -44,13 +57,14 @@ export const MainPath = ({
     return () => {
       buttons.map((button) => {
         button.current.removeEventListener("click", handleClick);
+        button.current.removeEventListener("mouseenter", handleMouse);
+        button.current.removeEventListener("mouseleave", handleMouse);
       });
     };
   }, []);
 
   useEffect(() => {
     buttons.forEach((button) => {
-      button.current.addEventListener("click", handleClick);
       if (button.current.id === selectedBtnId) {
         button.current.classList.add("selected");
       } else {
@@ -58,6 +72,16 @@ export const MainPath = ({
       }
     });
   }, [selectedBtnId]);
+
+  useEffect(() => {
+    buttons.forEach((button) => {
+      if (button.current.id === hovering) {
+        button.current.classList.add("hovering");
+      } else {
+        button.current.classList.remove("hovering");
+      }
+    });
+  }, [hovering]);
 
   return (
     <StyledSVGMainPath
@@ -71,16 +95,35 @@ export const MainPath = ({
           id="main-path"
         />
         <g ref={personalInfoBtn} className="button" id="personal-info">
-          <text
-            id="b89NP5EA2w"
-            x="246.92"
-            y="730.77"
-            transform="translate(-4.675 8.08)"
-          >
-            <tspan x="246.92" dy="1em">
-              Personal Info
-            </tspan>
-          </text>
+          <g className="text">
+            <g className="tooltip">
+              <rect
+                x="250.92"
+                y="710.77"
+                width="120"
+                height="40"
+                transform="translate(-4.675 8.08)"
+                rx="8"
+              />
+              <rect
+                x="250.92"
+                y="745.77"
+                width="15"
+                height="20"
+                transform="translate(-4.675 8.08)"
+              />
+            </g>
+            <text
+              id="b89NP5EA2w"
+              x="246.92"
+              y="720.77"
+              transform="translate(-4.675 8.08)"
+            >
+              <tspan x="260.92" dy="1em">
+                Personal Info
+              </tspan>
+            </text>
+          </g>
           <path
             d="M291.8 821.08c0 22.56-18.32 40.89-40.89 40.89s-40.89-18.33-40.89-40.89c0-22.57 18.32-40.89 40.89-40.89s40.89 18.32 40.89 40.89z"
             className="circle personal-info"
@@ -115,17 +158,35 @@ export const MainPath = ({
           </g>
         </g>
         <g ref={educationBtn} className="button" id="education">
-          <text
-            xmlns="http://www.w3.org/2000/svg"
-            id="bXeWAysrQ"
-            x="246.92"
-            y="730.77"
-            transform="translate(515.91 -239.608)"
-          >
-            <tspan x="246.92" dy="1em">
-              Education
-            </tspan>
-          </text>
+          <g className="text">
+            <g className="tooltip">
+              <rect
+                x="250.92"
+                y="710.77"
+                width="100"
+                height="40"
+                transform="translate(515.91 -239.608)"
+                rx="8"
+              />
+              <rect
+                x="250.92"
+                y="745.77"
+                width="15"
+                height="20"
+                transform="translate(515.91 -239.608)"
+              />
+            </g>
+            <text
+              id="b89NP5EA2w"
+              x="246.92"
+              y="720.77"
+              transform="translate(515.91 -239.608)"
+            >
+              <tspan x="260.92" dy="1em">
+                Education
+              </tspan>
+            </text>
+          </g>
           <path
             d="M812.38 573.39c0 22.57-18.32 40.89-40.89 40.89s-40.89-18.32-40.89-40.89 18.32-40.89 40.89-40.89 40.89 18.32 40.89 40.89z"
             className="circle education"
@@ -144,16 +205,35 @@ export const MainPath = ({
           </g>
         </g>
         <g ref={professionBtn} className="button" id="profession">
-          <text
-            id="f3RNiezNiF"
-            x="246.92"
-            y="730.77"
-            transform="translate(851.827 -494.63)"
-          >
-            <tspan x="246.92" dy="1em">
-              Profession
-            </tspan>
-          </text>
+          <g className="text">
+            <g className="tooltip">
+              <rect
+                x="250.92"
+                y="710.77"
+                width="100"
+                height="40"
+                transform="translate(851.827 -494.63)"
+                rx="8"
+              />
+              <rect
+                x="250.92"
+                y="745.77"
+                width="15"
+                height="20"
+                transform="translate(851.827 -494.63)"
+              />
+            </g>
+            <text
+              id="f3RNiezNiF"
+              x="246.92"
+              y="720.77"
+              transform="translate(851.827 -494.63)"
+            >
+              <tspan x="260.92" dy="1em">
+                Profession
+              </tspan>
+            </text>
+          </g>
           <path
             d="M1148.3 318.36c0 22.57-18.32 40.9-40.89 40.9s-40.89-18.33-40.89-40.9c0-22.56 18.32-40.89 40.89-40.89s40.89 18.33 40.89 40.89z"
             id="h7KFn2TbD"
@@ -215,17 +295,35 @@ export const MainPath = ({
           </g>
         </g>
         <g ref={moreInfoBtn} className="button" id="more-information">
-          <text
-            xmlns="http://www.w3.org/2000/svg"
-            id="aatOAIi66h"
-            x="246.92"
-            y="730.77"
-            transform="translate(1256.225 -614.646)"
-          >
-            <tspan x="246.92" dy="1em">
-              More Information
-            </tspan>
-          </text>
+          <g className="text">
+            <g className="tooltip">
+              <rect
+                x="250.92"
+                y="710.77"
+                width="155"
+                height="40"
+                transform="translate(1256.225 -614.646)"
+                rx="8"
+              />
+              <rect
+                x="250.92"
+                y="745.77"
+                width="15"
+                height="20"
+                transform="translate(1256.225 -614.646)"
+              />
+            </g>
+            <text
+              id="f3RNiezNiF"
+              x="246.92"
+              y="720.77"
+              transform="translate(1256.225 -614.646)"
+            >
+              <tspan x="260.92" dy="1em">
+                More Information
+              </tspan>
+            </text>
+          </g>
           <path
             d="M1552.7 198.35c0 22.57-18.32 40.89-40.89 40.89s-40.89-18.32-40.89-40.89 18.32-40.89 40.89-40.89 40.89 18.32 40.89 40.89z"
             id="a19Bnh1Uz"
@@ -255,17 +353,35 @@ export const MainPath = ({
           </g>
         </g>
         <g ref={continueBtn} className="button" id="continue">
-          <text
-            xmlns="http://www.w3.org/2000/svg"
-            id="c2oFdl2VZ9"
-            x="246.92"
-            y="730.77"
-            transform="translate(1508.416 -693.096)"
-          >
-            <tspan x="246.92" dy="1em">
-              Next Level
-            </tspan>
-          </text>
+          <g className="text">
+            <g className="tooltip">
+              <rect
+                x="250.92"
+                y="710.77"
+                width="100"
+                height="40"
+                transform="translate(1508.416 -693.096)"
+                rx="8"
+              />
+              <rect
+                x="250.92"
+                y="745.77"
+                width="15"
+                height="20"
+                transform="translate(1508.416 -693.096)"
+              />
+            </g>
+            <text
+              id="f3RNiezNiF"
+              x="246.92"
+              y="720.77"
+              transform="translate(1508.416 -693.096)"
+            >
+              <tspan x="260.92" dy="1em">
+                Next Level
+              </tspan>
+            </text>
+          </g>
           <path
             d="M1804.89 119.62c0 22.57-18.32 40.89-40.89 40.89s-40.89-18.32-40.89-40.89 18.32-40.89 40.89-40.89 40.89 18.32 40.89 40.89z"
             className="circle continue"
@@ -322,18 +438,39 @@ export const StyledSVGMainPath = styled("svg")`
       pointer-events: all;
       cursor: pointer;
 
-      text {
+      text,
+      .text {
+        opacity: 0;
         stroke-width: 1;
         pointer-events: none;
         fill: currentColor;
         stroke: currentColor;
+        transition: opacity 0.5s;
       }
 
-      &:before {
-        content: "TEST";
-        display: block;
-        position: absolute;
-        top: 0;
+      .text {
+        .tooltip {
+          rect {
+            fill: #ffb600;
+            stroke-width: 0;
+
+            &:nth-child(2) {
+              clip-path: polygon(0 0, 0% 100%, 100% 0);
+            }
+          }
+        }
+
+        text {
+          fill: currentColor;
+          stroke: currentColor;
+        }
+      }
+
+      &.hovering {
+        text,
+        .text {
+          opacity: 1;
+        }
       }
 
       &.selected {
